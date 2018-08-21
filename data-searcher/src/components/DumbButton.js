@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import '../App.css';
 
-class Keyboard extends Component {
+class DumbButton extends Component {
   render() {
     return (
-      <div class={keyboardClass}>
+      <div class={dumbButtonClass}>
 
       </div>
     );
   }
 }
 
-export default Keyboard;
+export default DumbButton;

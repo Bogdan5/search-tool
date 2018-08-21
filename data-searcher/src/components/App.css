@@ -1,0 +1,126 @@
+body {
+  box-sizing: border-box; }
+
+.App {
+  position: relative;
+  background-color: white;
+  height: 100vh; }
+  .App > div:first-child {
+    border: 2px solid #38435c;
+    border-radius: 4px;
+    padding: 10px;
+    width: 75%;
+    margin: 0 auto; }
+
+.Cards {
+  width: 90%;
+  min-height: 50px;
+  border: 1px solid #172036;
+  border-radius: 4px;
+  margin: 20px auto;
+  line-height: 50px; }
+  .Cards > div:first-child {
+    background-color: #354b7e;
+    padding-left: 20px;
+    color: white;
+    font-weight: 700; }
+
+.DialogBox {
+  background-color: rgba(103, 105, 112, 0.5);
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  position: absolute; }
+
+.zInvisible {
+  z-index: -1; }
+
+.zVisible {
+  z-index: 5; }
+
+.DialogDiv {
+  min-height: 33vh;
+  margin-left: 25%;
+  width: 50%;
+  background-color: #d5dced;
+  border-radius: 5px;
+  transition: opacity 600ms ease-in-out, transform 600ms ease-in-out;
+  opacity: 0; }
+
+.header-db {
+  width: 100%;
+  padding: 0;
+  background-color: #8ea1ce;
+  border-radius: 5px 5px 0 0; }
+  .header-db > div {
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    color: #38435c; }
+  .header-db > div:first-child {
+    background-color: #354b7e;
+    color: white;
+    text-align: center;
+    width: 95%;
+    border-radius: 5px 0 0 0; }
+  .header-db > div:last-child {
+    text-align: center;
+    width: 5%;
+    border-radius: 0 5px 0 0; }
+    .header-db > div:last-child:hover {
+      background-color: red;
+      cursor: pointer; }
+
+.formStyle > div {
+  border-bottom: 1px solid #6a83bf;
+  padding: 0 0 10px 10px; }
+  .formStyle > div p {
+    color: #38435c;
+    font-weight: 600; }
+  .formStyle > div input {
+    border-radius: 4px;
+    height: 25px;
+    font-size: 18px;
+    width: 75%; }
+
+.footerStyle {
+  padding: 10px; }
+
+.opaque {
+  opacity: 1; }
+
+.transparent {
+  opacity: 0.2; }
+
+.moveDown {
+  transform: translate(0, 200px); }
+
+.moveUp {
+  transform: translate(0, -100px); }
+
+button {
+  border-radius: 5px;
+  border: 0px;
+  height: 35px;
+  background-color: #354b7e;
+  color: white;
+  margin-left: 15px; }
+  button:hover {
+    cursor: pointer;
+    background-color: #26365a;
+    color: grey; }
+
+.EditBox {
+  background-color: #d5dced;
+  color: #38435c; }
+  .EditBox > div:first-child {
+    background-color: #b1bede;
+    font-weight: 600;
+    padding-left: 25px; }
+  .EditBox > div:last-child {
+    background-color: #8ea1ce; }
+    .EditBox > div:last-child button {
+      width: 55px; }
+
+.listItem {
+  padding-left: 35px; }
