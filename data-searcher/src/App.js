@@ -16,6 +16,9 @@ class App extends Component {
     return (
       <div className="App">
         <Header/>
+        <Keyboard componentList='3' title='Boolean connectors'/>
+        <Keyboard/>
+        <Keyboard/>
         <DataDisplay dataLoad={this.state.dataLoad} />
       </div>
     );

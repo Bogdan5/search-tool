@@ -5,7 +5,7 @@ class DumbButton extends Component {
   render() {
     return (
       <div class={dumbButtonClass}>
-
+        {this.props.name}
       </div>
     );
   }
