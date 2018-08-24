@@ -13,6 +13,7 @@ class App extends Component {
   }
 
   render() {
+    const booleanComponents = [{this.}]
     return (
       <div className="App">
         <Header/>
