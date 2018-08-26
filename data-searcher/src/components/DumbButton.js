@@ -4,9 +4,9 @@ import '../App.css';
 class DumbButton extends Component {
   render() {
     return (
-      <div class={dumbButtonClass}>
+      <button class={dumbButtonClass} onClick={this.props.buttonClicked}>
         {this.props.name}
-      </div>
+      </button>
     );
   }
 }

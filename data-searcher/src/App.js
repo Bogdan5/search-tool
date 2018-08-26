@@ -22,7 +22,14 @@ class App extends Component {
           <DumbButton/>
           <DumbButton/>
         </Keyboard>
-        <Keyboard></Keyboard>
+        <Keyboard>
+          <ButtonGroup>
+            
+          </ButtonGroup>
+          <input type='text'/>
+          <input type='radio'/>
+          <button type='button'>Submit</button>
+        </Keyboard>
         <Sorter/>
         <DataDisplay dataLoad={this.state.dataLoad} />
       </div>
