@@ -5,10 +5,8 @@ class Keyboard extends Component {
   render() {
     return (
       <div class={keyboardClass}>
-        <div>{this.props.title}</div>
-        <div>
-          {this.props.componentList}
-        </div>
+        <div>{this.props.typeContent}</div>
+        <div>{this.props.children}</div>
       </div>
     );
   }

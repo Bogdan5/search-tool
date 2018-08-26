@@ -13,13 +13,17 @@ class App extends Component {
   }
 
   render() {
-    const booleanComponents = [{this.}]
     return (
       <div className="App">
         <Header/>
-        <Keyboard componentList='3' title='Boolean connectors'/>
-        <Keyboard/>
-        <Keyboard/>
+        <Keyboard>
+          <DumbButton/>
+          <DumbButton/>
+          <DumbButton/>
+          <DumbButton/>
+        </Keyboard>
+        <Keyboard></Keyboard>
+        <Sorter/>
         <DataDisplay dataLoad={this.state.dataLoad} />
       </div>
     );
