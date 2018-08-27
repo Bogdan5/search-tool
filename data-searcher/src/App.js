@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Keyboard from './src/components/Keyboard';
+import ButtonGroup from './src/components/ButtonGroup';
+import DataDisplay from './src/components/DataDisplay';
+import DumbButton from './src/components/DumbButton';
+import Header from './src/components/Header';
+import Sorter from './src/components/Sorter';
+
 import './App.css';
 
 class App extends Component {
@@ -24,7 +30,7 @@ class App extends Component {
         </Keyboard>
         <Keyboard>
           <ButtonGroup>
-            
+
           </ButtonGroup>
           <input type='text'/>
           <input type='radio'/>
