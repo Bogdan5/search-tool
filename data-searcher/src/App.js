@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Keyboard from './src/components/Keyboard';
-import ButtonGroup from './src/components/ButtonGroup';
-import DataDisplay from './src/components/DataDisplay';
-import DumbButton from './src/components/DumbButton';
-import Header from './src/components/Header';
-import Sorter from './src/components/Sorter';
+import Keyboard from './components/Keyboard';
+import ButtonGroup from './components/ButtonGroup';
+import DataDisplay from './components/DataDisplay';
+import DumbButton from './components/DumbButton';
+import Header from './components/Header';
+import Sorter from './components/Sorter';
 
 import './App.css';
 
@@ -14,9 +14,9 @@ class App extends Component {
     this.state = {};
   }
 
-  componentDidMount () {
-    //fetch data from source
-  }
+  // componentDidMount () {
+  //   //fetch data from source
+  // }
 
   render() {
     return (
