@@ -4,7 +4,7 @@ import '../App.css';
 class DataDisplay extends Component {
   render() {
     return (
-      <div class={headerClass}>
+      <div class='dataDisplay'>
         Data searcher and organizer
       </div>
     );
