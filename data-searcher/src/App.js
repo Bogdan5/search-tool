@@ -23,10 +23,10 @@ class App extends Component {
       <div className="App">
         <Header title='Data display - Search and sort'/>
         <Keyboard>
-          <DumbButton/>
-          <DumbButton/>
-          <DumbButton/>
-          <DumbButton/>
+          <DumbButton name='AND'/>
+          <DumbButton name='OR'/>
+          <DumbButton name='XOR'/>
+          <DumbButton name='NOT'/>
         </Keyboard>
         <Keyboard>
           <ButtonGroup>

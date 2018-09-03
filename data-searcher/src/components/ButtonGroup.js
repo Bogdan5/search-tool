@@ -5,7 +5,7 @@ import '../App.css';
 class ButtonGroup extends Component {
   render() {
     return (
-      <div class='buttonGroup'>
+      <div className='buttonGroup'>
         {this.props.children}
       </div>
     );

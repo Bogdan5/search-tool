@@ -5,7 +5,7 @@ import '../App.css';
 class Keyboard extends Component {
   render() {
     return (
-      <div class='keyboardClass'>
+      <div className='keyboardClass'>
         <div>{this.props.typeContent}</div>
         <div>{this.props.children}</div>
       </div>
