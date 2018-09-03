@@ -5,7 +5,7 @@ class Header extends Component {
   render() {
     return (
       <div class='headerClass'>
-        Data searcher and organizer
+        {this.props.title}
       </div>
     );
   }

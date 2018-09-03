@@ -21,7 +21,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header/>
+        <Header title='Data display - Search and sort'/>
         <Keyboard>
           <DumbButton/>
           <DumbButton/>
