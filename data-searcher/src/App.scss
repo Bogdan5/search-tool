@@ -10,10 +10,6 @@ body{
   font-family: Roboto Condensed, sans-serif;
 }
 
-.buttonGroup{
-  @include round-border($green);
-}
-
 .dumbButtonClass{
   padding: 3px 5px;
   font-size: 12px;
@@ -23,6 +19,9 @@ body{
   border-radius: 4px;
   font-family: inherit;
   cursor: pointer;
+  margin-right: 10px;
+  height: 30px;
+  width: 60px;
 }
 
 .headerClass {
@@ -41,10 +40,14 @@ body{
     @include round-border($green);
     padding: 15px 5%;
     &:first-child{
-      width: 30%;
+      width: 20%;
     }
     &:nth-child(2){
       width: 50%;
     }
   }
+}
+
+.buttonGroup {
+
 }
