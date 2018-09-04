@@ -27,12 +27,24 @@ body{
 
 .headerClass {
   text-align: center;
+  font-size: 25px;
+  padding: 20px;
 }
 
 .keyboardClass{
   display: flex;
   flex-direction: row;
+  width: 75%;
+  margin: 0 auto;
+  font-size: 22px;
   &>div{
     @include round-border($green);
+    padding: 15px 5%;
+    &:first-child{
+      width: 30%;
+    }
+    &:nth-child(2){
+      width: 50%;
+    }
   }
 }
