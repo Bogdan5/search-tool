@@ -21,6 +21,8 @@ body{
   background-color: $dark-purple;
   border: none;
   border-radius: 4px;
+  font-family: inherit;
+  cursor: pointer;
 }
 
 .headerClass {
@@ -28,5 +30,9 @@ body{
 }
 
 .keyboardClass{
-
+  display: flex;
+  flex-direction: row;
+  &>div{
+    @include round-border($green);
+  }
 }

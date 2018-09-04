@@ -22,13 +22,12 @@ class App extends Component {
     return (
       <div className="App">
         <Header title='Data display - Search and sort'/>
-        <Keyboard>
-          <DumbButton name='AND'/>
-          <DumbButton name='OR'/>
-          <DumbButton name='XOR'/>
-          <DumbButton name='NOT'/>
+        <Keyboard typeContent='Boolean operations'>
+          <DumbButton name='AND' operation='&&'/>
+          <DumbButton name='OR' operation='||'/>
+          <DumbButton name='NOT' operation='!'/>
         </Keyboard>
-        <Keyboard>
+        <Keyboard typeContent='Search keyword'>
           <ButtonGroup>
 
           </ButtonGroup>

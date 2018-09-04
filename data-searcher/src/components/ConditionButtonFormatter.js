@@ -4,7 +4,7 @@ import '../App.css';
 class ConditionButtonFormatter extends Component {
   render() {
     return (
-      <div class='formatterClass'>
+      <div className='formatterClass'>
         <div>
           <div>{this.props.text}</div>
           <input type='text' placeholder={`Type search term`}></input>
