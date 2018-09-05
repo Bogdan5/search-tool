@@ -5,6 +5,7 @@ import DataDisplay from './components/DataDisplay';
 import DumbButton from './components/DumbButton';
 import Header from './components/Header';
 import Sorter from './components/Sorter';
+import ConditionButtonFormatter from './components/ConditionButtonFormatter';
 
 import './App.css';
 
@@ -29,12 +30,15 @@ class App extends Component {
         </Keyboard>
         <Keyboard typeContent='Search keyword'>
           <ButtonGroup>
-
+            <DumbButton name='INCLUDES' />
+            <DumbButton name='STARTS WITH' />
+            <DumbButton name='ENDS WITH' />
           </ButtonGroup>
           <input type='text'/>
           <input type='radio'/>
           <button type='button'>Submit</button>
         </Keyboard>
+        <ConditionButtonFormatter />
         <Sorter/>
         <DataDisplay dataLoad={this.state.dataLoad} />
       </div>

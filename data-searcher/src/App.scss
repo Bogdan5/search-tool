@@ -6,8 +6,18 @@ $green: rgb(14, 59, 49);
   border-radius: 2px;
 }
 
+@mixin row-flex {
+  display: flex;
+  flex-direction: row;
+}
+
 body{
   font-family: Roboto Condensed, sans-serif;
+}
+
+.App{
+  width: 75%;
+  margin: 0 auto;
 }
 
 .dumbButtonClass{
@@ -31,23 +41,28 @@ body{
 }
 
 .keyboardClass{
-  display: flex;
-  flex-direction: row;
-  width: 75%;
-  margin: 0 auto;
+  @include row-flex;
+
   font-size: 22px;
   &>div{
     @include round-border($green);
+    @include row-flex;
     padding: 15px 5%;
     &:first-child{
       width: 20%;
     }
     &:nth-child(2){
-      width: 50%;
+      width: 80%;
     }
   }
 }
 
-.buttonGroup {
+.buttonGroup>button {
+  display: block;
+}
 
+.formatterClass{
+  @include round-border($green);
+  background-color: rgb(200, 206, 208);
+  min-height: 200px;
 }

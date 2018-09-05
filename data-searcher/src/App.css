@@ -1,6 +1,10 @@
 body {
   font-family: Roboto Condensed, sans-serif; }
 
+.App {
+  width: 75%;
+  margin: 0 auto; }
+
 .dumbButtonClass {
   padding: 3px 5px;
   font-size: 12px;
@@ -22,14 +26,23 @@ body {
 .keyboardClass {
   display: flex;
   flex-direction: row;
-  width: 75%;
-  margin: 0 auto;
   font-size: 22px; }
   .keyboardClass > div {
     border: 1px solid #0e3b31;
     border-radius: 2px;
+    display: flex;
+    flex-direction: row;
     padding: 15px 5%; }
     .keyboardClass > div:first-child {
       width: 20%; }
     .keyboardClass > div:nth-child(2) {
-      width: 50%; }
+      width: 80%; }
+
+.buttonGroup > button {
+  display: block; }
+
+.formatterClass {
+  border: 1px solid #0e3b31;
+  border-radius: 2px;
+  background-color: #c8ced0;
+  min-height: 200px; }
