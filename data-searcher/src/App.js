@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header title='Data display - Search and sort'/>
-        <Keyboard typeContent='Boolean operations'>
+        <Keyboard typeContent='Boolean operators'>
           <DumbButton name='AND' operation='&&'/>
           <DumbButton name='OR' operation='||'/>
           <DumbButton name='NOT' operation='!'/>
@@ -34,9 +34,9 @@ class App extends Component {
             <DumbButton name='STARTS WITH' />
             <DumbButton name='ENDS WITH' />
           </ButtonGroup>
-          <input type='text'/>
-          <input type='radio'/>
-          <button type='button'>Submit</button>
+          <div className='contInput'><input type='text'/></div>
+          <div className='contInput'><input type='radio'/></div>
+          <div className='contInput'><button type='button'>Submit</button></div>
         </Keyboard>
         <ConditionButtonFormatter />
         <Sorter/>
