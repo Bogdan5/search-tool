@@ -31,11 +31,8 @@ body {
     border: 1px solid #0e3b31;
     border-radius: 2px;
     display: flex;
-    flex-direction: row;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 15px 5%; }
+    align-items: center;
+    padding: 15px; }
     .keyboardClass > div:first-child {
       width: 20%; }
     .keyboardClass > div:nth-child(2) {
@@ -44,13 +41,8 @@ body {
       flex-direction: row; }
       .keyboardClass > div:nth-child(2) input {
         height: 25px; }
-
-.contInput {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; }
-  .contInput > button {
-    height: 30px; }
+      .keyboardClass > div:nth-child(2) > * {
+        margin-right: 10px; }
 
 .buttonGroup > button {
   display: block; }
@@ -60,3 +52,6 @@ body {
   border-radius: 2px;
   background-color: #c8ced0;
   min-height: 200px; }
+
+.positionInput {
+  width: 40px; }

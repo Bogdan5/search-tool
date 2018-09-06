@@ -13,8 +13,7 @@ $green: rgb(14, 59, 49);
 
 @mixin vertical-center-flex {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
 }
 
 body{
@@ -48,13 +47,11 @@ body{
 
 .keyboardClass{
   @include row-flex;
-
   font-size: 15px;
   &>div{
     @include round-border($green);
-    @include row-flex;
     @include vertical-center-flex;
-    padding: 15px 5%;
+    padding: 15px;
     &:first-child{
       width: 20%;
     }
@@ -64,14 +61,10 @@ body{
       & input{
         height: 25px;
       }
+      &>*{
+        margin-right: 10px;
+      }
     }
-  }
-}
-
-.contInput{
-  @include vertical-center-flex;
-  &>button{
-    height: 30px;
   }
 }
 
@@ -83,4 +76,8 @@ body{
   @include round-border($green);
   background-color: rgb(200, 206, 208);
   min-height: 200px;
+}
+
+.positionInput{
+  width: 40px;
 }

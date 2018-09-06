@@ -34,9 +34,10 @@ class App extends Component {
             <DumbButton name='STARTS WITH' />
             <DumbButton name='ENDS WITH' />
           </ButtonGroup>
-          <div className='contInput'><input type='text'/></div>
-          <div className='contInput'><input type='radio'/></div>
-          <div className='contInput'><button type='button'>Submit</button></div>
+          <input type='text'/>
+          <div>in position</div>
+          <input type='text' className='positionInput'/>
+          <button type='button'>Submit</button>
         </Keyboard>
         <ConditionButtonFormatter />
         <Sorter/>
