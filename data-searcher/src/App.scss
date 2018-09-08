@@ -35,8 +35,8 @@ body{
   font-family: inherit;
   cursor: pointer;
   margin-right: 10px;
-  height: 30px;
-  width: 60px;
+  max-height: 40px;
+  min-width: 60px;
 }
 
 .headerClass {
