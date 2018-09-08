@@ -5,6 +5,7 @@ import DataDisplay from './components/DataDisplay';
 import DumbButton from './components/DumbButton';
 import Header from './components/Header';
 import Sorter from './components/Sorter';
+import ButtonWithHandler from './components/ComponentEnhancer';
 import ConditionButtonFormatter from './components/ConditionButtonFormatter';
 
 import './App.css';
@@ -20,7 +21,7 @@ class App extends Component {
       <div className="App">
         <Header title='Data display - Search and sort'/>
         <Keyboard typeContent='Boolean operators'>
-          <DumbButton name='AND' operation='&&'/>
+          <ButtonWithHandler name='AND' operation='&&'/>
           <DumbButton name='OR' operation='||'/>
           <DumbButton name='NOT' operation='!'/>
         </Keyboard>

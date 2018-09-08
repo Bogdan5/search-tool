@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import DumbButton from './DumbButton';
+import ButtonWithHandler from './ComponentEnhancer';
 import '../App.css';
 
 //this component includes a description on the left and to the right a set of\
 //buttons used to construct the query
 class Keyboard extends Component {
-  fromButton = (name, operation) => {};
+  fromButton = (name, operation) => {console.log('fromButton');};
 
   render() {
     return (
