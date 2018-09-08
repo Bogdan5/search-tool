@@ -1,12 +1,12 @@
 import DumbButton from './DumbButton';
 
-const ComponentEnhancer = enhancerFunc => BaseComponent => baseProps => {
-  const transformedProps = enhancerFunc(baseProps);
-  return <BaseComponent {...transformedProps} />;
+const ComponentEnhancer = (WrappedComponent, passedFunction) =>
+  class extends Component {
+  render() {
+    return <WrappedComponent {...this.props} fromButton={passedFunction}/>;
+  }
 };
 
-export default ComponentEnhancer;
+const ButtonWithHandler = ComponentEnhancer(this.fromButton, DumbButton);
 
-const ButtonWithHandler = ComponentEnhancer(
-  passedProp => 
-)(DumbButton);
+export default ButtonWithHandler;

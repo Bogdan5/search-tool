@@ -15,10 +15,6 @@ class App extends Component {
     this.state = {};
   }
 
-  // componentDidMount () {
-  //   //fetch data from source
-  // }
-
   render() {
     return (
       <div className="App">
