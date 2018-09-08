@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 
+//the area where queries are dislayed as they are constructed
 class ConditionButtonFormatter extends Component {
   render() {
     return (

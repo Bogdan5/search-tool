@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DumbButton from './DumbButton';
 import '../App.css';
 
+//this component includes a set of buttons
 class ButtonGroup extends Component {
   render() {
     return (

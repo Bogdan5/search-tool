@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 
+//basic button pressed to construct queries
 class DumbButton extends Component {
   render() {
     return (
