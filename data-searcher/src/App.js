@@ -5,7 +5,7 @@ import DataDisplay from './components/DataDisplay';
 import DumbButton from './components/DumbButton';
 import Header from './components/Header';
 import Sorter from './components/Sorter';
-import ButtonWithHandler from './components/ComponentEnhancer';
+// import { ButtonWithHandler } from './components/ComponentEnhancer';
 import ConditionButtonFormatter from './components/ConditionButtonFormatter';
 
 import './App.css';

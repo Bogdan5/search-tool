@@ -8,6 +8,6 @@ class extends Component {
   }
 };
 
-const ButtonWithHandler = ComponentEnhancer(this.fromButton, DumbButton);
+const foo = () => {console.log('foo');};
 
-export default ButtonWithHandler;
+export const ButtonWithHandler = ComponentEnhancer(DumbButton, this.props.fromButton);
