@@ -23,11 +23,22 @@ class App extends Component {
     };
   }
 
-  fromButton(x, y = 'none') {
-    console.log('app', x, y);
+  //function that passes data from DumbButton
+  fromButton(name, type) {
+    if (type = 'operator') {
+
+    } else if (type = 'element') {
+
+    }
+  }
+
+  submit() {
+    
   }
 
   render() {
+    //a handler is added to buttons in order to pass data from DumbButton chid to
+    //the App parent
     let ButtonWithHandler = ComponentEnhancer(DumbButton, this.fromButton, 'fromButton');
     return (
       <div className="App">
@@ -46,7 +57,7 @@ class App extends Component {
           <input type='text'/>
           <div>in position</div>
           <input type='text' className='positionInput'/>
-          <button type='button'>Submit</button>
+          <button type='button' onClick={this.submit}>Submit</button>
         </Keyboard>
         <ConditionButtonFormatter />
         <Sorter/>

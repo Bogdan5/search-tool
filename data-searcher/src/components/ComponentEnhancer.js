@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+//HOC that adds a new prop to a component
 const ComponentEnhancer = (WrappedComponent, passedFunction, propName) =>
 class extends Component {
   render() {
