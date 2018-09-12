@@ -26,7 +26,7 @@ body{
 }
 
 .dumbButtonClass{
-  padding: 3px 5px;
+  padding: 5px 7px;
   font-size: 12px;
   color: white;
   background-color: $dark-purple;
@@ -68,8 +68,11 @@ body{
   }
 }
 
-.buttonGroup>button {
-  display: block;
+.buttonGroup{
+  &>button {
+    display: block;
+    margin: 5px 0;
+  }
 }
 
 .formatterClass{

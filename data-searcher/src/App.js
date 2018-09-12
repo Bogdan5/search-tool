@@ -14,26 +14,32 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentOperation: {
-        element1: null,
-        operator: null,
-        element2: null,
-      },
+      currentOperation: [],
       listOperations: {},
     };
   }
 
-  //function that passes data from DumbButton
-  fromButton(name, type) {
-    if (type = 'operator') {
+  typeFinder(buttonName) {
+    if (['AND', 'OR'].includes(buttonName)) {
+      return 'operator';
+    } else if (['INCLUDES', 'STARTS WITH', 'ENDS WITH'].includes(buttonName)) {
+      return 'element';
+    } else if (buttonName === 'NOT') {
+      return 'operator-not';
+    }
+  }
 
-    } else if (type = 'element') {
+  //function that passes data from DumbButton
+  fromButton(name) {
+    if (this.typeFinder(name) === 'operator') {
+
+    } else if (this.typeFinder(name) === 'element') {
 
     }
   }
 
   submit() {
-    
+
   }
 
   render() {
@@ -44,9 +50,9 @@ class App extends Component {
       <div className="App">
         <Header title='Data display - Search and sort'/>
         <Keyboard typeContent='Boolean operators'>
-          <ButtonWithHandler name='AND' type='operator'/>
-          <ButtonWithHandler name='OR' type='operator'/>
-          <ButtonWithHandler name='NOT' type='operator'/>
+          <ButtonWithHandler name='AND'/>
+          <ButtonWithHandler name='OR'/>
+          <ButtonWithHandler name='NOT'/>
         </Keyboard>
         <Keyboard typeContent='Search keyword'>
           <ButtonGroup>

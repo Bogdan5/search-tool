@@ -3,7 +3,7 @@ import '../App.css';
 
 //basic button pressed to construct queries
 class DumbButton extends Component {
-  clickHandler = () => this.props.fromButton(this.props.name, this.props.type);
+  clickHandler = () => this.props.fromButton(this.props.name);
 
   render() {
     return (
