@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import DumbButton from './DumbButton';
 
 const ComponentEnhancer = (WrappedComponent, passedFunction) =>
 class extends Component {
