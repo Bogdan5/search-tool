@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 
-const ComponentEnhancer = (WrappedComponent, passedFunction) =>
+const ComponentEnhancer = (WrappedComponent, passedFunction, propName) =>
 class extends Component {
   render() {
-    return <WrappedComponent {...this.props} fromButton={passedFunction}/>;
+    let newProps = { ...this.props };
+    newProps[propName] = passedFunction;
+    return <WrappedComponent { ...newProps }/>;
   }
 };
 

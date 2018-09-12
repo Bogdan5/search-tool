@@ -13,28 +13,35 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      currentOperation: {
+        element1: null,
+        operator: null,
+        element2: null,
+      },
+      listOperations: {},
+    };
   }
 
-  fromButton(x, y) {
+  fromButton(x, y = 'none') {
     console.log('app', x, y);
   }
 
   render() {
-    let ButtonWithHandler = ComponentEnhancer(DumbButton, this.fromButton);
+    let ButtonWithHandler = ComponentEnhancer(DumbButton, this.fromButton, 'fromButton');
     return (
       <div className="App">
         <Header title='Data display - Search and sort'/>
         <Keyboard typeContent='Boolean operators'>
-          <ButtonWithHandler name='AND' operation='&&'/>
-          <ButtonWithHandler name='OR' operation='||'/>
-          <ButtonWithHandler name='NOT' operation='!'/>
+          <ButtonWithHandler name='AND' type='operator'/>
+          <ButtonWithHandler name='OR' type='operator'/>
+          <ButtonWithHandler name='NOT' type='operator'/>
         </Keyboard>
         <Keyboard typeContent='Search keyword'>
           <ButtonGroup>
-            <ButtonWithHandler name='INCLUDES' />
-            <ButtonWithHandler name='STARTS WITH' />
-            <ButtonWithHandler name='ENDS WITH' />
+            <ButtonWithHandler name='INCLUDES' type='element' />
+            <ButtonWithHandler name='STARTS WITH' type='element' />
+            <ButtonWithHandler name='ENDS WITH' type='element' />
           </ButtonGroup>
           <input type='text'/>
           <div>in position</div>
