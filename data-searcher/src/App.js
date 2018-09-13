@@ -38,14 +38,24 @@ class App extends Component {
     switch (this.typeFinder(name)) {
       case 'operation-not':
         if (len === 0) {
-          this.setState({ currentOperation: [true] });
+          this.setState({ currentOperation: ['not'] });
         } else if (currentOp[len - 1] === 'operator') {
-          this.setState({ currentOperation: currentOp.push[true] });
+          this.setState({ currentOperation: currentOp.concat('not') });
         }
 
         break;
       case 'operation':
+        if (currentOp[len - 1] === 'submit') {
+          this.setState({ currentOperation: currentOp.concat(name) });
+        }
+
+        break;
       case 'submit':
+        if (currentOp[len - 1] === 'element') {
+          this.setState({ currentOperation: currentOp.concat('submit') });
+        }
+
+        break;
       case 'element':
 
     }
