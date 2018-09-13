@@ -16,10 +16,11 @@ class App extends Component {
     this.state = {
       currentOperation: [],
       listOperations: {},
+      keyword: '',
     };
   }
 
-  typeFinder(buttonName) {
+  typeFinder = (buttonName) => {
     if (['AND', 'OR'].includes(buttonName)) {
       return 'operator';
     } else if (['INCLUDES', 'STARTS WITH', 'ENDS WITH'].includes(buttonName)) {
@@ -29,10 +30,16 @@ class App extends Component {
     } else if (buttonName === 'SUBMIT') {
       return 'submit';
     }
-  }
+  };
+
+  textHandler = (e) => {
+    console.log('event ', e.target.value);
+    this.setState({ keyword: e.target.value });
+  };
 
   //function that passes data from DumbButton
-  fromButton(name) {
+  fromButton = (name) => {
+    // console.log('fromButton', name, this.typeFinder(name));
     let currentOp = Array.from(this.state.currentOperation);
     let len = currentOp.length;
     switch (this.typeFinder(name)) {
@@ -57,9 +64,9 @@ class App extends Component {
 
         break;
       case 'element':
-
+        currentOp && this.setState({ currentOperation: currentOp.concat(name) });
     }
-  }
+  };
 
   render() {
     //a handler is added to buttons in order to pass data from DumbButton chid to
@@ -79,9 +86,9 @@ class App extends Component {
             <ButtonWithHandler name='STARTS WITH' type='element' />
             <ButtonWithHandler name='ENDS WITH' type='element' />
           </ButtonGroup>
-          <input type='text'/>
+          <input type='text' onChange={this.textHandler}/>
           <div>in position</div>
-          <input type='text' className='positionInput'/>
+          <input type='text'  className='positionInput'/>
           <ButtonWithHandler name='SUBMIT'/>
         </Keyboard>
         <ConditionButtonFormatter />
