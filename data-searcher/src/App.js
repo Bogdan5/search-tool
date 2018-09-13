@@ -17,6 +17,7 @@ class App extends Component {
       currentOperation: [],
       listOperations: {},
       keyword: '',
+      inputVisibility: 'hidden',
     };
   }
 
@@ -39,7 +40,7 @@ class App extends Component {
 
   //function that passes data from DumbButton
   fromButton = (name) => {
-    // console.log('fromButton', name, this.typeFinder(name));
+    (name === 'INCLUDES') && this.setState({ visibility: 'visible' });
     let currentOp = Array.from(this.state.currentOperation);
     let len = currentOp.length;
     switch (this.typeFinder(name)) {
@@ -58,6 +59,7 @@ class App extends Component {
 
         break;
       case 'submit':
+        this.setState({ visibility: 'hidden' });
         if (currentOp[len - 1] === 'element') {
           this.setState({ currentOperation: currentOp.concat('submit') });
         }
@@ -82,14 +84,14 @@ class App extends Component {
         </Keyboard>
         <Keyboard typeContent='Search keyword'>
           <ButtonGroup>
-            <ButtonWithHandler name='INCLUDES' type='element' />
-            <ButtonWithHandler name='STARTS WITH' type='element' />
-            <ButtonWithHandler name='ENDS WITH' type='element' />
+            <ButtonWithHandler name='INCLUDES' />
+            <ButtonWithHandler name='STARTS WITH' />
+            <ButtonWithHandler name='ENDS WITH' />
           </ButtonGroup>
           <input type='text' onChange={this.textHandler}/>
-          <div>in position</div>
-          <input type='text'  className='positionInput'/>
-          <ButtonWithHandler name='SUBMIT'/>
+          <div className={this.state.inputVisibility}>in position</div>
+          <input type='text'  className={`positionInput ${this.state.inputVisibility}`}/>
+          <ButtonWithHandler name='SUBMIT' visibility={this.state.inputVisibility}/>
         </Keyboard>
         <ConditionButtonFormatter />
         <Sorter/>

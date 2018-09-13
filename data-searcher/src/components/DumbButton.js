@@ -7,7 +7,7 @@ class DumbButton extends Component {
 
   render() {
     return (
-      <button className='dumbButtonClass' onClick={this.clickHandler}>
+      <button className={`dumbButtonClass ${this.props.visibility}`} onClick={this.clickHandler}>
         {this.props.name}
       </button>
     );
