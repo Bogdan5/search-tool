@@ -40,7 +40,8 @@ class App extends Component {
 
   //function that passes data from DumbButton
   fromButton = (name) => {
-    (name === 'INCLUDES') && this.setState({ visibility: 'visible' });
+    console.log(name);
+    (name === 'INCLUDES') && this.setState({ inputVisibility: 'visible' });
     let currentOp = Array.from(this.state.currentOperation);
     let len = currentOp.length;
     switch (this.typeFinder(name)) {
@@ -59,7 +60,7 @@ class App extends Component {
 
         break;
       case 'submit':
-        this.setState({ visibility: 'hidden' });
+        this.setState({ inputVisibility: 'hidden' });
         if (currentOp[len - 1] === 'element') {
           this.setState({ currentOperation: currentOp.concat('submit') });
         }

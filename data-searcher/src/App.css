@@ -31,8 +31,7 @@ body {
     height: 20px;
     background-color: #e5b6ee;
     border: 1px solid #410b40;
-    border-radius: 2px;
-    margin-left: 20px; }
+    border-radius: 2px; }
   .keyboardClass > div {
     border: 1px solid #0e3b31;
     border-radius: 2px;
@@ -46,7 +45,7 @@ body {
       display: flex;
       flex-direction: row; }
       .keyboardClass > div:nth-child(2) > * {
-        margin-right: 10px; }
+        margin: 0 10px; }
 
 .buttonGroup > button {
   min-width: 120px;

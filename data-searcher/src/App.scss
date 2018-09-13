@@ -53,7 +53,6 @@ body{
     background-color: rgb(229, 182, 238);
     border:1px solid $dark-purple;
     border-radius: 2px;
-    margin-left: 20px;
   }
   &>div{
     @include round-border($green);
@@ -66,7 +65,7 @@ body{
       width: 80%;
       @include row-flex;
       &>*{
-        margin-right: 10px;
+        margin: 0 10px;
       }
     }
   }
