@@ -26,20 +26,29 @@ class App extends Component {
       return 'element';
     } else if (buttonName === 'NOT') {
       return 'operator-not';
+    } else if (buttonName === 'SUBMIT') {
+      return 'submit';
     }
   }
 
   //function that passes data from DumbButton
   fromButton(name) {
-    if (this.typeFinder(name) === 'operator') {
+    let currentOp = Array.from(this.state.currentOperation);
+    let len = currentOp.length;
+    switch (this.typeFinder(name)) {
+      case 'operation-not':
+        if (len === 0) {
+          this.setState({ currentOperation: [true] });
+        } else if (currentOp[len - 1] === 'operator') {
+          this.setState({ currentOperation: currentOp.push[true] });
+        }
 
-    } else if (this.typeFinder(name) === 'element') {
+        break;
+      case 'operation':
+      case 'submit':
+      case 'element':
 
     }
-  }
-
-  submit() {
-
   }
 
   render() {
@@ -63,7 +72,7 @@ class App extends Component {
           <input type='text'/>
           <div>in position</div>
           <input type='text' className='positionInput'/>
-          <button type='button' onClick={this.submit}>Submit</button>
+          <ButtonWithHandler name='SUBMIT'/>
         </Keyboard>
         <ConditionButtonFormatter />
         <Sorter/>
