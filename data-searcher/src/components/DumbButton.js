@@ -6,10 +6,11 @@ class DumbButton extends Component {
   clickHandler = () => this.props.fromButton(this.props.name);
 
   render() {
-    let isActive = !this.props.active && (this.props.keywordButtonClicked !== this.props.name) ?
-      'active' : 'inactive';
+    let isActive = ['INCLUDES', 'STARTS WITH', 'ENDS WITH'].includes(this.props.name) ?
+      (this.props.active ? 'active' : (this.props.keywordButtonClicked === this.props.name) ?
+      'active' : 'inactive') : 'active';
     return (
-      <button className={`dumbButtonClass ${this.props.visibility} ${this.props.active}`}
+      <button className={`dumbButtonClass ${isActive}`}
         onClick={this.clickHandler}>
         {this.props.name}
       </button>

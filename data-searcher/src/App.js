@@ -16,7 +16,7 @@ class App extends Component {
     this.state = {
       currentOperation: [],
       listOperations: {},
-      keyword: '',
+      keyword: '',//content of the keyword input text field
       inputVisibility: 'hidden',
       keywordButtonClicked: '',//name of button clicked in the keyword(2nd) Keyboard
       active: true,//true if all buttons are active, false if some should be greyed out
@@ -41,7 +41,7 @@ class App extends Component {
 
   //function that passes data from DumbButton
   fromButton = (name) => {
-    this.setState({ keywordButtonClicked: name });
+    this.setState({ keywordButtonClicked: name, active: false });
     (name === 'INCLUDES') && this.setState({ inputVisibility: 'visible' });
     let currentOp = Array.from(this.state.currentOperation);
     let len = currentOp.length;
@@ -73,12 +73,11 @@ class App extends Component {
   };
 
   render() {
-    //a handler is added to buttons in order to pass data from DumbButton chid to
-    //the App parent
     let propertiesObj = {
-      fromButton: this.fromButton,
-      active: this.state.active,
-      keywordButtonClicked: this.state.keywordButtonClicked,
+      fromButton: this.fromButton,//a handler is added to buttons in order to pass data
+      //from DumbButton chid to the App parent
+      active: this.state.active,//in element buttons, true greyed out
+      keywordButtonClicked: this.state.keywordButtonClicked,//what element button is clicked
     };
     let ButtonWithHandler = ComponentEnhancer(DumbButton, propertiesObj);
     return (
