@@ -34,13 +34,11 @@ class App extends Component {
   };
 
   textHandler = (e) => {
-    console.log('event ', e.target.value);
     this.setState({ keyword: e.target.value });
   };
 
   //function that passes data from DumbButton
   fromButton = (name) => {
-    console.log(name);
     (name === 'INCLUDES') && this.setState({ inputVisibility: 'visible' });
     let currentOp = Array.from(this.state.currentOperation);
     let len = currentOp.length;
@@ -89,7 +87,7 @@ class App extends Component {
             <ButtonWithHandler name='STARTS WITH' />
             <ButtonWithHandler name='ENDS WITH' />
           </ButtonGroup>
-          <input type='text' onChange={this.textHandler}/>
+          <input type='text' onChange={this.textHandler} placeholder='Type keyword'/>
           <div className={this.state.inputVisibility}>in position</div>
           <input type='text'  className={`positionInput ${this.state.inputVisibility}`}/>
           <ButtonWithHandler name='SUBMIT' visibility={this.state.inputVisibility}/>
