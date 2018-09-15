@@ -61,7 +61,7 @@ class App extends Component {
 
         break;
       case 'submit':
-        this.setState({ inputVisibility: 'hidden' });
+        this.setState({ inputVisibility: 'hidden', active: true, });
         if (currentOp[len - 1] === 'element') {
           this.setState({ currentOperation: currentOp.concat('submit') });
         }
@@ -69,6 +69,10 @@ class App extends Component {
         break;
       case 'element':
         currentOp && this.setState({ currentOperation: currentOp.concat(name) });
+        break;
+      case 'cancel':
+        this.setState({ inputVisibility: 'hidden', active: true, });
+        break;
     }
   };
 
@@ -98,6 +102,8 @@ class App extends Component {
           <div className={this.state.inputVisibility}>in position</div>
           <input type='text'  className={`positionInput ${this.state.inputVisibility}`}/>
           <ButtonWithHandler name='SUBMIT' visibility={this.state.inputVisibility}/>
+          <ButtonWithHandler name='CANCEL'/>
+
         </Keyboard>
         <ConditionButtonFormatter />
         <Sorter/>
