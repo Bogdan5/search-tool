@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 
 //HOC that adds a new function as a prop to a component
-const ComponentEnhancer = (WrappedComponent, passedFunction, propName) =>
+const ComponentEnhancer = (WrappedComponent, propertiesObj) =>
 class extends Component {
   render() {
-    let newProps = { ...this.props };
-    newProps[propName] = passedFunction;
+    let newProps = Object.assign({ ...this.props }, propertiesObj);
     return <WrappedComponent { ...newProps }/>;
   }
 };

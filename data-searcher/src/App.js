@@ -18,6 +18,8 @@ class App extends Component {
       listOperations: {},
       keyword: '',
       inputVisibility: 'hidden',
+      keywordButtonClicked: '',//name of button clicked in the keyword(2nd) Keyboard
+      active: true,//true if all buttons are active, false if some should be greyed out
     };
   }
 
@@ -39,6 +41,7 @@ class App extends Component {
 
   //function that passes data from DumbButton
   fromButton = (name) => {
+    this.setState({ keywordButtonClicked: name });
     (name === 'INCLUDES') && this.setState({ inputVisibility: 'visible' });
     let currentOp = Array.from(this.state.currentOperation);
     let len = currentOp.length;
@@ -72,7 +75,12 @@ class App extends Component {
   render() {
     //a handler is added to buttons in order to pass data from DumbButton chid to
     //the App parent
-    let ButtonWithHandler = ComponentEnhancer(DumbButton, this.fromButton, 'fromButton');
+    let propertiesObj = {
+      fromButton: this.fromButton,
+      active: this.state.active,
+      keywordButtonClicked: this.state.keywordButtonClicked,
+    };
+    let ButtonWithHandler = ComponentEnhancer(DumbButton, propertiesObj);
     return (
       <div className="App">
         <Header title='Data display - Search and sort'/>
