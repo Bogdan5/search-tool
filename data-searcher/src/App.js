@@ -13,6 +13,7 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.textInput = React.createRef();
     this.state = {
       currentOperation: [],
       listOperations: {},
@@ -23,6 +24,10 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    this.textInput.current.focus();
+  }
+
   typeFinder = (buttonName) => {
     if (['AND', 'OR'].includes(buttonName)) {
       return 'operator';
@@ -30,8 +35,8 @@ class App extends Component {
       return 'element';
     } else if (buttonName === 'NOT') {
       return 'operator-not';
-    } else if (buttonName === 'SUBMIT') {
-      return 'submit';
+    } else {
+      return buttonName.toLowerCase();
     }
   };
 
@@ -71,7 +76,7 @@ class App extends Component {
         currentOp && this.setState({ currentOperation: currentOp.concat(name) });
         break;
       case 'cancel':
-        this.setState({ inputVisibility: 'hidden', active: true, });
+        this.setState({ inputVisibility: 'hidden', active: true, currentOperation: [], });
         break;
     }
   };
@@ -98,7 +103,8 @@ class App extends Component {
             <ButtonWithHandler name='STARTS WITH' />
             <ButtonWithHandler name='ENDS WITH' />
           </ButtonGroup>
-          <input type='text' onChange={this.textHandler} placeholder='Type keyword'/>
+          <input type='text' onChange={this.textHandler} placeholder='Type keyword'
+           ref={this.textInput} />
           <div className={this.state.inputVisibility}>in position</div>
           <input type='text'  className={`positionInput ${this.state.inputVisibility}`}/>
           <ButtonWithHandler name='SUBMIT' visibility={this.state.inputVisibility}/>
