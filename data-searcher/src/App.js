@@ -16,7 +16,7 @@ class App extends Component {
     this.textInput = React.createRef();
     this.state = {
       currentOperation: [],
-      listOperations: {},
+      listOperations: [],
       keyword: '',//content of the keyword input text field
       inputVisibility: 'hidden',
       keywordButtonClicked: '',//name of button clicked in the keyword(2nd) Keyboard
@@ -46,22 +46,22 @@ class App extends Component {
 
   //function that passes data from DumbButton
   fromButton = (name) => {
-    this.setState({ keywordButtonClicked: name, active: false });
+    this.setState({ keywordButtonClicked: name });
     (name === 'INCLUDES') && this.setState({ inputVisibility: 'visible' });
     let currentOp = Array.from(this.state.currentOperation);
     let len = currentOp.length;
     switch (this.typeFinder(name)) {
       case 'operation-not':
         if (len === 0) {
-          this.setState({ currentOperation: ['not'] });
+          this.setState({ currentOperation: { not: true } });
         } else if (currentOp[len - 1] === 'operator') {
-          this.setState({ currentOperation: currentOp.concat('not') });
+          this.setState({ currentOperation: currentOp.concat([{ not: true }]) });
         }
 
         break;
       case 'operation':
         if (currentOp[len - 1] === 'submit') {
-          this.setState({ currentOperation: currentOp.concat(name) });
+          this.setState({ currentOperation: currentOp.concat([{ operation: name }]) });
         }
 
         break;
@@ -73,7 +73,8 @@ class App extends Component {
 
         break;
       case 'element':
-        currentOp && this.setState({ currentOperation: currentOp.concat(name) });
+        currentOp && this.setState({ currentOperation: currentOp.concat(name),
+          active: false, });
         break;
       case 'cancel':
         this.setState({ inputVisibility: 'hidden', active: true, currentOperation: [], });
@@ -111,7 +112,7 @@ class App extends Component {
           <ButtonWithHandler name='CANCEL'/>
 
         </Keyboard>
-        <ConditionButtonFormatter />
+        <ConditionButtonFormatter structure={this.state.listOperations}/>
         <Sorter/>
         <DataDisplay dataLoad={this.state.dataLoad} />
       </div>
