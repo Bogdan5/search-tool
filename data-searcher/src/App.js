@@ -17,10 +17,10 @@ class App extends Component {
     this.state = {
       currentOperation: [],
       listOperations: [],
-      keyword: '',//content of the keyword input text field
+      keyword: '', // content of the keyword input text field
       inputVisibility: 'hidden',
-      keywordButtonClicked: '',//name of button clicked in the keyword(2nd) Keyboard
-      active: true,//true if all buttons are active, false if some should be greyed out
+      keywordButtonClicked: '', // name of button clicked in the keyword(2nd) Keyboard
+      active: true, // true if all buttons are active, false if some should be greyed out
     };
   }
 
@@ -31,25 +31,27 @@ class App extends Component {
   typeFinder = (buttonName) => {
     if (['AND', 'OR'].includes(buttonName)) {
       return 'operator';
-    } else if (['INCLUDES', 'STARTS WITH', 'ENDS WITH'].includes(buttonName)) {
-      return 'element';
-    } else if (buttonName === 'NOT') {
-      return 'operator-not';
-    } else {
-      return buttonName.toLowerCase();
     }
+    if (['INCLUDES', 'STARTS WITH', 'ENDS WITH'].includes(buttonName)) {
+      return 'element';
+    }
+    if (buttonName === 'NOT') {
+      return 'operator-not';
+    }
+
+    return buttonName.toLowerCase();
   };
 
   textHandler = (e) => {
     this.setState({ keyword: e.target.value });
   };
 
-  //function that passes data from DumbButton
+  // function that passes data from DumbButton
   fromButton = (name) => {
     this.setState({ keywordButtonClicked: name });
-    (name === 'INCLUDES') && this.setState({ inputVisibility: 'visible' });
-    let currentOp = Array.from(this.state.currentOperation);
-    let len = currentOp.length;
+    if (name === 'INCLUDES') {this.setState({ inputVisibility: 'visible' })}
+    const currentOp = {...this.state.currentOperation};
+    const len = currentOp.length;
     switch (this.typeFinder(name)) {
       case 'operation-not':
         if (len === 0) {
@@ -68,35 +70,37 @@ class App extends Component {
       case 'submit':
         this.setState({ inputVisibility: 'hidden', active: true, });
         if (currentOp[len - 1] === 'element') {
-          this.setState({ currentOperation: currentOp.concat('submit') });
+          this.setState({ currentOperation: currentOp.concat('submit') })
         }
 
         break;
       case 'element':
-        currentOp && this.setState({ currentOperation: currentOp.concat(name),
-          active: false, });
+        if (currentOp) {
+          this.setState({ currentOperation: currentOp.concat(name), active: false, });
+        }
         break;
       case 'cancel':
         this.setState({ inputVisibility: 'hidden', active: true, currentOperation: [], });
         break;
+      default:
     }
   };
 
   render() {
-    let propertiesObj = {
-      fromButton: this.fromButton,//a handler is added to buttons in order to pass data
-      //from DumbButton chid to the App parent
-      active: this.state.active,//in element buttons, true greyed out
-      keywordButtonClicked: this.state.keywordButtonClicked,//what element button is clicked
+    const propertiesObj = {
+      fromButton: this.fromButton, // a handler is added to buttons in order to pass data
+      // from DumbButton chid to the App parent
+      active: this.state, // in element buttons, true greyed out
+      keywordButtonClicked: this.state, // what element button is clicked
     };
-    let ButtonWithHandler = ComponentEnhancer(DumbButton, propertiesObj);
+    const ButtonWithHandler = ComponentEnhancer(DumbButton, propertiesObj);
     return (
-      <div className="App">
-        <Header title='Data display - Search and sort'/>
+      <div className='App'>
+        <Header title='Data display - Search and sort' />
         <Keyboard typeContent='Boolean operators'>
-          <ButtonWithHandler name='AND'/>
-          <ButtonWithHandler name='OR'/>
-          <ButtonWithHandler name='NOT'/>
+          <ButtonWithHandler name='AND' />
+          <ButtonWithHandler name='OR' />
+          <ButtonWithHandler name='NOT' />
         </Keyboard>
         <Keyboard typeContent='Search keyword'>
           <ButtonGroup>
@@ -113,8 +117,8 @@ class App extends Component {
 
         </Keyboard>
         <ConditionButtonFormatter structure={this.state.listOperations}/>
-        <Sorter/>
-        <DataDisplay dataLoad={this.state.dataLoad} />
+        <Sorter />
+        <DataDisplay dataLoad={this.state} />
       </div>
     );
   }
