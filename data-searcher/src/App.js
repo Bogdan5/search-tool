@@ -116,7 +116,6 @@ class App extends Component {
           <input type='text' className={`positionInput ${this.state.inputVisibility}`} />
           <ButtonWithHandler name='SUBMIT' visibility={this.state.inputVisibility} />
           <ButtonWithHandler name='CANCEL' />
-
         </Keyboard>
         <ConditionButtonFormatter structure={this.state.listOperations} />
         <Sorter />
