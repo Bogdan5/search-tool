@@ -18,7 +18,7 @@ class App extends Component {
       currentOperation: [],
       listOperations: [],
       keyword: '', // content of the keyword input text field
-      inputVisibility: 'hidden',
+      inputVisibility: 'hidden', // in the second Keyboard, whether the position input is visible
       keywordButtonClicked: '', // name of button clicked in the keyword(2nd) Keyboard
       active: true, // true if all buttons are active, false if some should be greyed out
     };
