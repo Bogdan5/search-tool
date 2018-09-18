@@ -97,6 +97,7 @@ class App extends Component {
     return (
       <div className='App'>
         <Header title='Data display - Search and sort' />
+        { /* includes description and operator buttons */ }
         <Keyboard typeContent='Boolean operators'>
           <ButtonWithHandler name='AND' />
           <ButtonWithHandler name='OR' />
@@ -108,7 +109,7 @@ class App extends Component {
             <ButtonWithHandler name='STARTS WITH' />
             <ButtonWithHandler name='ENDS WITH' />
           </ButtonGroup>
-          <input
+          <input // the keyword used to search
             type='text' onChange={this.textHandler}
             placeholder='Type keyword' ref={this.textInput}
           />
@@ -117,8 +118,11 @@ class App extends Component {
           <ButtonWithHandler name='SUBMIT' visibility={this.state.inputVisibility} />
           <ButtonWithHandler name='CANCEL' />
         </Keyboard>
+        {/* includes the query structure */}
         <ConditionButtonFormatter structure={this.state.listOperations} />
+        {/* buttons for sorting the data */}
         <Sorter />
+        {/* data displayed as resulted from search and sort operations */}
         <DataDisplay dataLoad={this.state} />
       </div>
     );
