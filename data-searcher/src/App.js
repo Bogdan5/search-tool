@@ -49,8 +49,8 @@ class App extends Component {
   // function that passes data from DumbButton
   fromButton = (name) => {
     this.setState({ keywordButtonClicked: name });
-    if (name === 'INCLUDES') {this.setState({ inputVisibility: 'visible' })}
-    const currentOp = {...this.state.currentOperation};
+    if (name === 'INCLUDES') { this.setState({ inputVisibility: 'visible' }); }
+    const currentOp = this.state.currentOperation;
     const len = currentOp.length;
     switch (this.typeFinder(name)) {
       case 'operation-not':
@@ -68,9 +68,9 @@ class App extends Component {
 
         break;
       case 'submit':
-        this.setState({ inputVisibility: 'hidden', active: true, });
+        this.setState({ inputVisibility: 'hidden', active: true });
         if (currentOp[len - 1] === 'element') {
-          this.setState({ currentOperation: currentOp.concat('submit') })
+          this.setState({ currentOperation: currentOp.concat('submit') });
         }
 
         break;
@@ -80,7 +80,7 @@ class App extends Component {
         }
         break;
       case 'cancel':
-        this.setState({ inputVisibility: 'hidden', active: true, currentOperation: [], });
+        this.setState({ inputVisibility: 'hidden', active: true, currentOperation: [] });
         break;
       default:
     }
@@ -108,15 +108,17 @@ class App extends Component {
             <ButtonWithHandler name='STARTS WITH' />
             <ButtonWithHandler name='ENDS WITH' />
           </ButtonGroup>
-          <input type='text' onChange={this.textHandler} placeholder='Type keyword'
-           ref={this.textInput} />
+          <input
+            type='text' onChange={this.textHandler}
+            placeholder='Type keyword' ref={this.textInput}
+          />
           <div className={this.state.inputVisibility}>in position</div>
-          <input type='text'  className={`positionInput ${this.state.inputVisibility}`}/>
-          <ButtonWithHandler name='SUBMIT' visibility={this.state.inputVisibility}/>
-          <ButtonWithHandler name='CANCEL'/>
+          <input type='text' className={`positionInput ${this.state.inputVisibility}`} />
+          <ButtonWithHandler name='SUBMIT' visibility={this.state.inputVisibility} />
+          <ButtonWithHandler name='CANCEL' />
 
         </Keyboard>
-        <ConditionButtonFormatter structure={this.state.listOperations}/>
+        <ConditionButtonFormatter structure={this.state.listOperations} />
         <Sorter />
         <DataDisplay dataLoad={this.state} />
       </div>

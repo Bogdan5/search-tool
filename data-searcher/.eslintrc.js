@@ -5,6 +5,8 @@ module.exports = {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "allowShortCircuit": true,
         "allowTernary": true,
-        "jsx-quotes": ["error", "prefer-single"]
+        "jsx-quotes": ["error", "prefer-single"],
+        "jsx-first-prop-new-line": "never",
+        "react/jsx-max-props-per-line": [1, { "maximum": 2, "when": "multiline" }]
       }
 };
