@@ -76,7 +76,7 @@ class App extends Component {
         break;
       case 'element':
         if (currentOp) {
-          this.setState({ currentOperation: currentOp.concat(name), active: false, });
+          this.setState({ currentOperation: currentOp.concat(name), active: false });
         }
         break;
       case 'cancel':

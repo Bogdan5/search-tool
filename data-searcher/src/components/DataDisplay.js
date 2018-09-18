@@ -1,14 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../App.css';
 
-class DataDisplay extends Component {
-  render() {
-    return (
-      <div className='dataDisplay'>
-
-      </div>
-    );
-  }
-}
+const DataDisplay = data => <div className='dataDisplay'>{data}</div>;
 
 export default DataDisplay;
