@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import '../App.css';
 
 // this component includes a set of buttons
