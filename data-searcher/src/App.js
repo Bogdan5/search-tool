@@ -87,7 +87,7 @@ class App extends Component {
   };
 
   render() {
-    const propertiesObj = {
+    const propertiesObj = { // properties object passed to ComponentEnhancer
       fromButton: this.fromButton, // a handler is added to buttons in order to pass data
       // from DumbButton chid to the App parent
       active: this.state, // in element buttons, true greyed out
