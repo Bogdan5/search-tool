@@ -7,6 +7,8 @@ module.exports = {
         "allowTernary": true,
         "jsx-quotes": ["error", "prefer-single"],
         "jsx-first-prop-new-line": "never",
-        "react/jsx-max-props-per-line": [1, { "maximum": 2, "when": "multiline" }]
+        "react/jsx-max-props-per-line": [1, { "maximum": 2, "when": "multiline" }],
+        "react/require-default-props": [0, { forbidDefaultForRequired: true }],
+        "react/prop-types": [0]
       }
 };
