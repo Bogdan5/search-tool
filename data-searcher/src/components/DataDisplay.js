@@ -1,6 +1,9 @@
 import React from 'react';
 import '../App.css';
 
-const DataDisplay = data => <div className='dataDisplay'>{data}</div>;
+const DataDisplay = (props) => {
+  const { data } = props;
+  return (<div className='dataDisplay'>{data}</div>);
+};
 
 export default DataDisplay;
