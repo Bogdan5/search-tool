@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../App.css';
 
-//this component includes a set of buttons
-class ButtonGroup extends Component {
-  render() {
-    return (
-      <div className='buttonGroup'>
-        {this.props.children}
-      </div>
-    );
-  }
-}
+// this component includes a set of buttons
+const ButtonGroup = (props) => {
+  const { children } = props;
+  return (
+    <div className='buttonGroup'>
+      {children}
+    </div>
+  );
+};
 
 export default ButtonGroup;
