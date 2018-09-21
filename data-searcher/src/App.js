@@ -50,33 +50,33 @@ class App extends Component {
   fromButton = (name) => {
     this.setState({ keywordButtonClicked: name });
     if (name === 'INCLUDES') { this.setState({ inputVisibility: 'visible' }); }
-    const currentOp = this.state.currentOperation;
-    const len = currentOp.length;
+    const { currentOperation } = this.state;
+    const len = currentOperation.length;
     switch (this.typeFinder(name)) {
       case 'operation-not':
         if (len === 0) {
           this.setState({ currentOperation: { not: true } });
-        } else if (currentOp[len - 1] === 'operator') {
-          this.setState({ currentOperation: currentOp.concat([{ not: true }]) });
+        } else if (currentOperation[len - 1] === 'operator') {
+          this.setState({ currentOperation: currentOperation.concat([{ not: true }]) });
         }
 
         break;
       case 'operation':
-        if (currentOp[len - 1] === 'submit') {
-          this.setState({ currentOperation: currentOp.concat([{ operation: name }]) });
+        if (currentOperation[len - 1] === 'submit') {
+          this.setState({ currentOperation: currentOperation.concat([{ operation: name }]) });
         }
 
         break;
       case 'submit':
         this.setState({ inputVisibility: 'hidden', active: true });
-        if (currentOp[len - 1] === 'element') {
-          this.setState({ currentOperation: currentOp.concat('submit') });
+        if (currentOperation[len - 1] === 'element') {
+          this.setState({ currentOperation: currentOperation.concat('submit') });
         }
 
         break;
       case 'element':
-        if (currentOp) {
-          this.setState({ currentOperation: currentOp.concat(name), active: false });
+        if (currentOperation) {
+          this.setState({ currentOperation: currentOperation.concat(name), active: false });
         }
         break;
       case 'cancel':
@@ -87,6 +87,7 @@ class App extends Component {
   };
 
   render() {
+    // enhancing DumbButtons to ButtonWithHandler through ComponentEnhancer
     const propertiesObj = { // properties object passed to ComponentEnhancer
       fromButton: this.fromButton, // a handler is added to buttons in order to pass data
       // from DumbButton chid to the App parent
@@ -94,6 +95,9 @@ class App extends Component {
       keywordButtonClicked: this.state, // what element button is clicked
     };
     const ButtonWithHandler = ComponentEnhancer(DumbButton, propertiesObj);
+
+    //
+    const { inputVisibility, listOperations } = this.state;
     return (
       <div className='App'>
         <Header title='Data display - Search and sort' />
@@ -113,13 +117,13 @@ class App extends Component {
             type='text' onChange={this.textHandler}
             placeholder='Type keyword' ref={this.textInput}
           />
-          <div className={this.state.inputVisibility}>in position</div>
-          <input type='text' className={`positionInput ${this.state.inputVisibility}`} />
-          <ButtonWithHandler name='SUBMIT' visibility={this.state.inputVisibility} />
+          <div className={inputVisibility}>in position</div>
+          <input type='text' className={`positionInput ${inputVisibility}`} />
+          <ButtonWithHandler name='SUBMIT' visibility={inputVisibility} />
           <ButtonWithHandler name='CANCEL' />
         </Keyboard>
         {/* includes the query structure */}
-        <ConditionButtonFormatter structure={this.state.listOperations} />
+        <ConditionButtonFormatter structure={listOperations} />
         {/* buttons for sorting the data */}
         <Sorter />
         {/* data displayed as resulted from search and sort operations */}
