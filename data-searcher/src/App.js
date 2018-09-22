@@ -49,10 +49,12 @@ class App extends Component {
   // function that passes data from DumbButton
   fromButton = (name) => {
     const { currentOperation, listOperations } = this.state;
-    const operationAdder = (func) => {
-      const listCopy = Object.assign(listOperations);
-      const newList = Object.assign({}, { operation: func }, listCopy);
-      return newList;
+    const operationAdder = (elem) => {
+      if (typeof elem === 'function') {
+        const newList = Object.assign({}, { operation: elem, operand: listOperations });
+        return newList;
+      }
+      
     };
 
     this.setState({ keywordButtonClicked: name });
