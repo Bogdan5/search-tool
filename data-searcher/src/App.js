@@ -48,7 +48,7 @@ class App extends Component {
 
   // function that passes data from DumbButton
   fromButton = (name) => {
-    const { currentOperation, listOperations } = this.state;
+    const { currentOperation, listOperations, keyword, keywordButtonClicked } = this.state;
     const operationAdder = (elem) => {
       if (typeof elem === 'function') {
         const newList = Object.assign({}, { operation: elem, operand: listOperations });
@@ -78,12 +78,14 @@ class App extends Component {
         break;
       case 'submit':
         this.setState({ inputVisibility: 'hidden', active: true });
-        if (currentOperation[len - 1] === 'element') {
-          this.setState({ currentOperation: currentOperation.concat('submit') });
+        if (keywordButtonClicked && keyword) { 
+          
         }
 
         break;
       case 'element':
+        this.setState({ keywordButtonClicked: name });
+        
         if (currentOperation) {
           this.setState({ currentOperation: currentOperation.concat(name), active: false });
         }
