@@ -16,7 +16,7 @@ class App extends Component {
     this.textInput = React.createRef();
     this.state = {
       currentOperation: [],
-      listOperations: [],
+      listOperations: {},
       keyword: '', // content of the keyword input text field
       inputVisibility: 'hidden', // in the second Keyboard, whether the position input is visible
       keywordButtonClicked: '', // name of button clicked in the keyword(2nd) Keyboard
@@ -48,9 +48,16 @@ class App extends Component {
 
   // function that passes data from DumbButton
   fromButton = (name) => {
+    const { currentOperation, listOperations } = this.state;
+    const operationAdder = (func) => {
+      const listCopy = Object.assign(listOperations);
+      const newList = Object.assign({}, { operation: func }, listCopy);
+      return newList;
+    };
+
     this.setState({ keywordButtonClicked: name });
     if (name === 'INCLUDES') { this.setState({ inputVisibility: 'visible' }); }
-    const { currentOperation } = this.state;
+   
     const len = currentOperation.length;
     switch (this.typeFinder(name)) {
       case 'operation-not':
