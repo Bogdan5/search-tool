@@ -54,7 +54,6 @@ class App extends Component {
         const newList = Object.assign({}, { operation: elem, operand: listOperations });
         return newList;
       }
-      
     };
 
     this.setState({ keywordButtonClicked: name });
@@ -78,7 +77,7 @@ class App extends Component {
         break;
       case 'submit':
         this.setState({ inputVisibility: 'hidden', active: true });
-        if (keywordButtonClicked && keyword) { 
+        if (keywordButtonClicked && keyword) {
           this.setState({ listOperations: operationAdder(operation)})
         }
 

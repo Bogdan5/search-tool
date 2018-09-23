@@ -12,8 +12,6 @@ const ConditionButtonFormatter = (props) => {
   );
 };
 
-ConditionButtonFormatter.propTypes = {
-  structure: PropTypes.shape,
-};
+ConditionButtonFormatter.propTypes = { structure: PropTypes.shape };
 
 export default ConditionButtonFormatter;
