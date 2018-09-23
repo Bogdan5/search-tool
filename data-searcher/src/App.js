@@ -29,14 +29,11 @@ class App extends Component {
   }
 
   typeFinder = (buttonName) => {
-    if (['AND', 'OR'].includes(buttonName)) {
-      return 'operator';
+    if (['AND', 'OR', 'NOT'].includes(buttonName)) {
+      return 'operation';
     }
     if (['INCLUDES', 'STARTS WITH', 'ENDS WITH'].includes(buttonName)) {
       return 'element';
-    }
-    if (buttonName === 'NOT') {
-      return 'operator-not';
     }
 
     return buttonName.toLowerCase();
@@ -58,17 +55,8 @@ class App extends Component {
 
     this.setState({ keywordButtonClicked: name });
     if (name === 'INCLUDES') { this.setState({ inputVisibility: 'visible' }); }
-   
     const len = currentOperation.length;
     switch (this.typeFinder(name)) {
-      case 'operation-not':
-        if (len === 0) {
-          this.setState({ currentOperation: { not: true } });
-        } else if (currentOperation[len - 1] === 'operator') {
-          this.setState({ currentOperation: currentOperation.concat([{ not: true }]) });
-        }
-        this.setState({ active: ['element']});
-        break;
       case 'operation':
         if (currentOperation[len - 1] === 'submit') {
           this.setState({ currentOperation: currentOperation.concat([{ operation: name }]) });
@@ -78,13 +66,12 @@ class App extends Component {
       case 'submit':
         this.setState({ inputVisibility: 'hidden', active: true });
         if (keywordButtonClicked && keyword) {
-          this.setState({ listOperations: operationAdder(operation)})
+          this.setState({ listOperations: operationAdder(operation) });
         }
 
         break;
       case 'element':
         this.setState({ keywordButtonClicked: name });
-        
         if (currentOperation) {
           this.setState({ currentOperation: currentOperation.concat(name), active: false });
         }
@@ -97,17 +84,17 @@ class App extends Component {
   };
 
   render() {
+    const { inputVisibility, listOperations, active } = this.state;
     // enhancing DumbButtons to ButtonWithHandler through ComponentEnhancer
     const propertiesObj = { // properties object passed to ComponentEnhancer
       fromButton: this.fromButton, // a handler is added to buttons in order to pass data
       // from DumbButton chid to the App parent
-      active: this.state, // in element buttons, true greyed out
+      active, // in element buttons, true greyed out
       keywordButtonClicked: this.state, // what element button is clicked
     };
     const ButtonWithHandler = ComponentEnhancer(DumbButton, propertiesObj);
 
     //
-    const { inputVisibility, listOperations } = this.state;
     return (
       <div className='App'>
         <Header title='Data display - Search and sort' />

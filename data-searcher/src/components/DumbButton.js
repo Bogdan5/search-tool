@@ -3,18 +3,16 @@ import '../App.css';
 
 // basic button pressed to construct queries
 const DumbButton = (props) => {
-  const clickHandler = () => props.fromButton(props.name);
-
-  // let isActive = ['INCLUDES', 'STARTS WITH', 'ENDS WITH'].includes(this.props.name) ?
-  //   (this.props.active ? 'active' : (this.props.keywordButtonClicked === this.props.name) ?
-  //   'active' : 'inactive') : 'active';
+  const { name, active } = props;
+  const isActive = (active.includes(name)) ? 'active' : 'inactive';
+  const clickHandler = () => { if (isActive === 'active') { props.fromButton(name); } };
 
   return (
     <button
       type='submit' className={`dumbButtonClass ${isActive}`}
       onClick={clickHandler}
     >
-      {props.name}
+      {name}
     </button>
   );
 };
