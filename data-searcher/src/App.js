@@ -79,7 +79,7 @@ class App extends Component {
       case 'submit':
         this.setState({ inputVisibility: 'hidden', active: true });
         if (keywordButtonClicked && keyword) { 
-          
+          this.setState({ listOperations: operationAdder(operation)})
         }
 
         break;
