@@ -20,7 +20,7 @@ class App extends Component {
       keyword: '', // content of the keyword input text field
       inputVisibility: 'hidden', // in the second Keyboard, whether the position input is visible
       keywordButtonClicked: '', // name of button clicked in the keyword(2nd) Keyboard
-      active: true, // true if all buttons are active, false if some should be greyed out
+      active: [], // array of buttons active
     };
   }
 
@@ -67,7 +67,7 @@ class App extends Component {
         } else if (currentOperation[len - 1] === 'operator') {
           this.setState({ currentOperation: currentOperation.concat([{ not: true }]) });
         }
-
+        this.setState({ active: ['element']});
         break;
       case 'operation':
         if (currentOperation[len - 1] === 'submit') {
