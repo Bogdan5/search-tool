@@ -21,6 +21,7 @@ class App extends Component {
       inputVisibility: 'hidden', // in the second Keyboard, whether the position input is visible
       keywordButtonClicked: '', // name of button clicked in the keyword(2nd) Keyboard
       active: [], // array of buttons active
+      indexOp: 0, // how many elements have been added in an operation
     };
   }
 
@@ -45,7 +46,7 @@ class App extends Component {
 
   // function that passes data from DumbButton
   fromButton = (name) => {
-    const { currentOperation, listOperations, keyword, keywordButtonClicked } = this.state;
+    const { currentOperation, listOperations, keyword, keywordButtonClicked, indexOp } = this.state;
     const operationAdder = (elem) => {
       if (typeof elem === 'function') {
         const newList = Object.assign({}, { operation: elem, operand: listOperations });
@@ -55,16 +56,16 @@ class App extends Component {
 
     this.setState({ keywordButtonClicked: name });
     if (name === 'INCLUDES') { this.setState({ inputVisibility: 'visible' }); }
-    const len = currentOperation.length;
+    // const len = currentOperation.length;
     switch (this.typeFinder(name)) {
-      case 'operation':
-        if (currentOperation[len - 1] === 'submit') {
-          this.setState({ currentOperation: currentOperation.concat([{ operation: name }]) });
-        }
+      // case 'operation':
+      //   if (currentOperation[len - 1] === 'submit') {
+      //     this.setState({ currentOperation: currentOperation.concat([{ operation: name }]) });
+      //   }
 
-        break;
+      //   break;
       case 'submit':
-        this.setState({ inputVisibility: 'hidden', active: true });
+        this.setState({ inputVisibility: 'hidden' });
         if (keywordButtonClicked && keyword) {
           this.setState({ listOperations: operationAdder(operation) });
         }
@@ -72,9 +73,9 @@ class App extends Component {
         break;
       case 'element':
         this.setState({ keywordButtonClicked: name });
-        if (currentOperation) {
-          this.setState({ currentOperation: currentOperation.concat(name), active: false });
-        }
+        // if (currentOperation) {
+        //   this.setState({ currentOperation: currentOperation.concat(name), active: false });
+        // }
         break;
       case 'cancel':
         this.setState({ inputVisibility: 'hidden', active: true, currentOperation: [] });
