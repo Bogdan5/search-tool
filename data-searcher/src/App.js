@@ -7,6 +7,8 @@ import Header from './components/Header';
 import Sorter from './components/Sorter';
 import ComponentEnhancer from './components/ComponentEnhancer';
 import ConditionButtonFormatter from './components/ConditionButtonFormatter';
+import DropDownMenu from './components/DropDownMenu';
+import MenuOption from './components/MenuOption';
 
 import './App.css';
 
@@ -126,6 +128,12 @@ class App extends Component {
         <Sorter />
         {/* data displayed as resulted from search and sort operations */}
         <DataDisplay dataLoad={this.state} />
+        <DropDownMenu>
+          <MenuOption />
+          <MenuOption />
+          <MenuOption />
+          <MenuOption />
+        </DropDownMenu>
       </div>
     );
   }

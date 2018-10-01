@@ -3,7 +3,8 @@ body {
 
 .App {
   width: 75%;
-  margin: 0 auto; }
+  margin: 0 auto;
+  position: relative; }
 
 .dumbButtonClass {
   padding: 5px 7px;
@@ -74,21 +75,23 @@ body {
   visibility: visible; }
 
 .dropDownMenu {
+  position: absolute;
   transition: height 0 ease-in-out;
-  height: 90px;
+  height: 120px;
   width: 200px;
   background-color: silver;
   color: black; }
-  .dropDownMenu > div {
-    transition: height 0 ease-in-out;
-    height: 30px;
-    border: 1px solid black; }
-    .dropDownMenu > div:hover {
-      background-color: grey;
-      color: white; }
+
+.menuOption {
+  transition: height 0 ease-in-out;
+  height: 30px;
+  border: 1px solid black; }
+  .menuOption:hover {
+    background-color: grey;
+    color: white; }
 
 .deployedMenu {
-  height: 90px; }
+  height: 120px; }
 
 .deployedMenuCard {
   height: 30px; }
