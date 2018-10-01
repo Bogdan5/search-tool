@@ -72,3 +72,8 @@ body {
 
 .visible {
   visibility: visible; }
+
+.dropDownMenu {
+  height: 100px;
+  width: 200px;
+  background-color: silver; }
