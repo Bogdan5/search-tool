@@ -60,12 +60,6 @@ class App extends Component {
     if (name === 'INCLUDES') { this.setState({ inputVisibility: 'visible' }); }
     // const len = currentOperation.length;
     switch (this.typeFinder(name)) {
-      // case 'operation':
-      //   if (currentOperation[len - 1] === 'submit') {
-      //     this.setState({ currentOperation: currentOperation.concat([{ operation: name }]) });
-      //   }
-
-      //   break;
       case 'submit':
         this.setState({ inputVisibility: 'hidden' });
         if (keywordButtonClicked && keyword) {
@@ -75,9 +69,6 @@ class App extends Component {
         break;
       case 'element':
         this.setState({ keywordButtonClicked: name });
-        // if (currentOperation) {
-        //   this.setState({ currentOperation: currentOperation.concat(name), active: false });
-        // }
         break;
       case 'cancel':
         this.setState({ inputVisibility: 'hidden', active: true, currentOperation: [] });
@@ -85,6 +76,10 @@ class App extends Component {
       default:
     }
   };
+
+  fromMenu = (name) => {
+
+  }
 
   render() {
     const { inputVisibility, listOperations, active } = this.state;
@@ -96,6 +91,10 @@ class App extends Component {
       keywordButtonClicked: this.state, // what element button is clicked
     };
     const ButtonWithHandler = ComponentEnhancer(DumbButton, propertiesObj);
+    const propertiesMenu = {
+      fromMenu: this.fromMenu
+    };
+    const MenuElementWithHandler = ComponentEnhancer(MenuOption, propertiesMenu);
 
     //
     return (
@@ -129,10 +128,10 @@ class App extends Component {
         {/* data displayed as resulted from search and sort operations */}
         <DataDisplay dataLoad={this.state} />
         <DropDownMenu>
-          <MenuOption />
-          <MenuOption />
-          <MenuOption />
-          <MenuOption />
+          <MenuElementWithHandler />
+          <MenuElementWithHandler />
+          <MenuElementWithHandler />
+          <MenuElementWithHandler />
         </DropDownMenu>
       </div>
     );

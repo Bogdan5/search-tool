@@ -109,7 +109,7 @@ body{
 
 .dropDownMenu{
   position: absolute;
-  transition: height 0 ease-in-out;
+  transition: height 600ms ease-in-out;
   height: 120px;
   width: 200px;
   background-color: silver;
@@ -127,6 +127,7 @@ body{
   }
 }
 
+// added to .dropDownMenu animates height
 .deployedMenu{
   height: 120px;
 }
@@ -139,6 +140,7 @@ body{
   height: 0;
 }
 
+// control whether the drop down menu is visible
 .z-visible{
   z-index:5;
 }
