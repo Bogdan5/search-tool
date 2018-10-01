@@ -107,10 +107,30 @@ body{
 }
 
 .dropDownMenu{
-  height: 90px;
+  transition: height 0 ease-in-out;
+  height: 120px;
   width: 200px;
   background-color: silver;
+  color: black;
   &>div{
-    height:30px
+    transition: height 0 ease-in-out;
+    height:30px;
+    border: 1px solid black;
+    &:hover{
+      background-color: grey;
+      color:white;
+    }
   }
+}
+
+.deployedMenu{
+  height: 120px;
+}
+
+.deployedMenuCard{
+  height: 30px;
+}
+
+.retracted{
+  height: 0;
 }

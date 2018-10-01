@@ -6,9 +6,7 @@ const DropDownMenu = (props) => {
   const { children } = props;
   return (
     <div className='dropDownMenu'>
-      <div>NOT</div>
-      <div>AND</div>
-      <div>OR</div>
+      {children}
     </div>
   );
 };

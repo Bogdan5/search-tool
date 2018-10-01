@@ -74,6 +74,24 @@ body {
   visibility: visible; }
 
 .dropDownMenu {
-  height: 100px;
+  transition: height 0 ease-in-out;
+  height: 90px;
   width: 200px;
-  background-color: silver; }
+  background-color: silver;
+  color: black; }
+  .dropDownMenu > div {
+    transition: height 0 ease-in-out;
+    height: 30px;
+    border: 1px solid black; }
+    .dropDownMenu > div:hover {
+      background-color: grey;
+      color: white; }
+
+.deployedMenu {
+  height: 90px; }
+
+.deployedMenuCard {
+  height: 30px; }
+
+.retracted {
+  height: 0; }
