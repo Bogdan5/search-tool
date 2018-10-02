@@ -24,6 +24,7 @@ class App extends Component {
       keywordButtonClicked: '', // name of button clicked in the keyword(2nd) Keyboard
       active: [], // array of buttons active
       indexOp: 0, // how many elements have been added in an operation
+      position: 0
     };
   }
 
@@ -46,6 +47,10 @@ class App extends Component {
     this.setState({ keyword: e.target.value });
   };
 
+  positionHandler = (e) => {
+    
+  }
+
   // function that passes data from DumbButton
   fromButton = (name) => {
     const { currentOperation, listOperations, keyword, keywordButtonClicked, indexOp } = this.state;
@@ -67,9 +72,6 @@ class App extends Component {
         }
 
         break;
-      case 'element':
-        this.setState({ keywordButtonClicked: name });
-        break;
       case 'cancel':
         this.setState({ inputVisibility: 'hidden', active: true, currentOperation: [] });
         break;
@@ -78,7 +80,14 @@ class App extends Component {
   };
 
   fromMenu = (name) => {
+    switch (name) {
+      case 'not':
 
+      case 'and':
+      case 'or':
+      case 'delete':
+      default:
+    }
   }
 
   render() {
@@ -91,9 +100,7 @@ class App extends Component {
       keywordButtonClicked: this.state, // what element button is clicked
     };
     const ButtonWithHandler = ComponentEnhancer(DumbButton, propertiesObj);
-    const propertiesMenu = {
-      fromMenu: this.fromMenu
-    };
+    const propertiesMenu = { fromMenu: this.fromMenu };
     const MenuElementWithHandler = ComponentEnhancer(MenuOption, propertiesMenu);
 
     //
@@ -128,10 +135,10 @@ class App extends Component {
         {/* data displayed as resulted from search and sort operations */}
         <DataDisplay dataLoad={this.state} />
         <DropDownMenu>
-          <MenuElementWithHandler />
-          <MenuElementWithHandler />
-          <MenuElementWithHandler />
-          <MenuElementWithHandler />
+          <MenuElementWithHandler name='not' />
+          <MenuElementWithHandler name='and' />
+          <MenuElementWithHandler name='or' />
+          <MenuElementWithHandler name='delete' />
         </DropDownMenu>
       </div>
     );
