@@ -10,6 +10,6 @@ module.exports = {
         "react/jsx-max-props-per-line": [1, { "maximum": 2, "when": "multiline" }],
         "react/require-default-props": [0, { forbidDefaultForRequired: true }],
         "react/prop-types": [0],
-        "object-curly-newline": ["error", { "multiline": true }]
+        "object-curly-newline": ["error", { "multiline": true }],
       }
 };

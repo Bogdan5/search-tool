@@ -24,7 +24,7 @@ class App extends Component {
       keywordButtonClicked: '', // name of button clicked in the keyword(2nd) Keyboard
       active: [], // array of buttons active
       indexOp: 0, // how many elements have been added in an operation
-      position: 0
+      position: 0,
     };
   }
 
@@ -53,12 +53,18 @@ class App extends Component {
 
   // function that passes data from DumbButton
   fromButton = (name) => {
-    const { currentOperation, listOperations, keyword, keywordButtonClicked, indexOp } = this.state;
-    const operationAdder = (elem) => {
-      if (typeof elem === 'function') {
-        const newList = Object.assign({}, { operation: elem, operand: listOperations });
-        return newList;
-      }
+    const {
+      currentOperation, listOperations, keyword, keywordButtonClicked,
+      indexOp, position,
+    } = this.state;
+
+    // function that determines whether the keyword matches the data at the required position
+    const include = (dataString, word, posit) => dataString.match(new RegExp(word)).index === posit;
+
+    // function that determines whether the data string starts with the keyword
+    const endsWith = (dataString, word) => {
+      const len = dataString.length - word.length;
+      include(dataString, word, len);
     };
 
     this.setState({ keywordButtonClicked: name });
@@ -71,10 +77,12 @@ class App extends Component {
           switch (indexOp) {
             case 0:
               if (listOperations.keys().length === 0) {
-                this.setState({ listOperations: { include: 0, element: [keyword, position]});
+                this.setState({ listOperations: { func: include, element: [keyword, position] } });
               }
+              break;
             case 1:
             case 2:
+            default:
           }
           this.setState({ listOperations: operationAdder(operation) });
         }
