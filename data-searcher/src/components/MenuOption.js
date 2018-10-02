@@ -8,7 +8,8 @@ const MenuOption = (props) => {
     fromMenu(name);
   };
   return (
-    <div className='menuOption' role='menuitem'
+    <div
+      className='menuOption' role='menuitem'
       tabIndex={0} onClick={handler}
       onKeyDown={handler}
     >

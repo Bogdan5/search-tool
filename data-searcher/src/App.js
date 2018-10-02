@@ -48,7 +48,7 @@ class App extends Component {
   };
 
   positionHandler = (e) => {
-    
+    this.setState({ position: e.target.value });
   }
 
   // function that passes data from DumbButton
@@ -68,6 +68,14 @@ class App extends Component {
       case 'submit':
         this.setState({ inputVisibility: 'hidden' });
         if (keywordButtonClicked && keyword) {
+          switch (indexOp) {
+            case 0:
+              if (listOperations.keys().length === 0) {
+                this.setState({ listOperations: { include: 0, element: [keyword, position]});
+              }
+            case 1:
+            case 2:
+          }
           this.setState({ listOperations: operationAdder(operation) });
         }
 
@@ -124,7 +132,10 @@ class App extends Component {
             placeholder='Type keyword' ref={this.textInput}
           />
           <div className={inputVisibility}>in position</div>
-          <input type='text' className={`positionInput ${inputVisibility}`} />
+          <input // the position; 0 by default
+            type='text' className={`positionInput ${inputVisibility}`}
+            onChange={this.positionHandler}
+          />
           <ButtonWithHandler name='SUBMIT' visibility={inputVisibility} />
           <ButtonWithHandler name='CANCEL' />
         </Keyboard>
