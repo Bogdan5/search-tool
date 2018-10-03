@@ -78,6 +78,8 @@ class App extends Component {
             case 0:
               if (listOperations.keys().length === 0) {
                 this.setState({ listOperations: { func: include, element: [keyword, position] } });
+              } else {
+                this.setState({ listOperations: {...listOperations}})
               }
               break;
             case 1:
