@@ -74,7 +74,6 @@ class App extends Component {
       case 'submit':
         this.setState({ inputVisibility: 'hidden' });
         if (keywordButtonClicked && keyword) {
-          
           this.setState({ listOperations: listOperations.concat(include(keyword, position || 0)) });
         }
 
