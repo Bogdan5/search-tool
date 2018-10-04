@@ -59,7 +59,7 @@ class App extends Component {
     } = this.state;
 
     // function that determines whether the keyword matches the data at the required position
-    const include = (dataString, word, posit) => dataString.match(new RegExp(word)).index === posit;
+    const include = (word, posit) => data => data.match(new RegExp(word)).index === posit;
 
     // function that determines whether the data string starts with the keyword
     const endsWith = (dataString, word) => {
@@ -74,19 +74,8 @@ class App extends Component {
       case 'submit':
         this.setState({ inputVisibility: 'hidden' });
         if (keywordButtonClicked && keyword) {
-          switch (indexOp) {
-            case 0:
-              if (listOperations.keys().length === 0) {
-                this.setState({ listOperations: { func: include, element: [keyword, position] } });
-              } else {
-                this.setState({ listOperations: {...listOperations}})
-              }
-              break;
-            case 1:
-            case 2:
-            default:
-          }
-          this.setState({ listOperations: operationAdder(operation) });
+          
+          this.setState({ listOperations: listOperations.concat(include(keyword, position || 0)) });
         }
 
         break;
