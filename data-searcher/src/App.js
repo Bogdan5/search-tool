@@ -18,7 +18,7 @@ class App extends Component {
     this.textInput = React.createRef();
     this.state = {
       currentOperation: [],
-      listOperations: {},
+      listOperations: [],
       keyword: '', // content of the keyword input text field
       inputVisibility: 'hidden', // in the second Keyboard, whether the position input is visible
       keywordButtonClicked: '', // name of button clicked in the keyword(2nd) Keyboard
