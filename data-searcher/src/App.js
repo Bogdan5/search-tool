@@ -32,17 +32,6 @@ class App extends Component {
     this.textInput.current.focus();
   }
 
-  typeFinder = (buttonName) => {
-    if (['AND', 'OR', 'NOT'].includes(buttonName)) {
-      return 'operation';
-    }
-    if (['INCLUDES', 'STARTS WITH', 'ENDS WITH'].includes(buttonName)) {
-      return 'element';
-    }
-
-    return buttonName.toLowerCase();
-  };
-
   textHandler = (e) => {
     this.setState({ keyword: e.target.value });
   };
@@ -70,16 +59,15 @@ class App extends Component {
     this.setState({ keywordButtonClicked: name });
     if (name === 'INCLUDES') { this.setState({ inputVisibility: 'visible' }); }
     // const len = currentOperation.length;
-    switch (this.typeFinder(name)) {
-      case 'submit':
-        this.setState({ inputVisibility: 'hidden' });
+    switch (name) {
+      case 'SUMBIT':
         if (keywordButtonClicked && keyword) {
           this.setState({ listOperations: listOperations.concat(include(keyword, position || 0)) });
         }
 
         break;
-      case 'cancel':
-        this.setState({ inputVisibility: 'hidden', active: true, currentOperation: [] });
+      case 'CANCEL':
+        this.setState({ currentOperation: [] });
         break;
       default:
     }
@@ -87,11 +75,11 @@ class App extends Component {
 
   fromMenu = (name) => {
     switch (name) {
-      case 'not':
+      case 'NOT':
 
-      case 'and':
-      case 'or':
-      case 'delete':
+      case 'AND':
+      case 'OR':
+      case 'DELETE':
       default:
     }
   }
