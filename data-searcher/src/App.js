@@ -48,7 +48,13 @@ class App extends Component {
     } = this.state;
 
     // function that determines whether the keyword matches the data at the required position
-    const include = (word, posit) => data => data.match(new RegExp(word)).index === posit;
+    const include = (word, posit) => data => {
+      if (position || position > 0) {
+        return data.match(new RegExp(word)).index === posit;
+      } else {
+        return data.match(new RegExp(word));
+      }
+    };
 
     // function that determines whether the data string starts with the keyword
     const endsWith = (dataString, word) => {
@@ -73,10 +79,10 @@ class App extends Component {
     }
   };
 
-  fromMenu = (name) => {
-    switch (name) {
+  fromMenu = (operationClicked, indexButton) => {
+    switch (operationClicked) {
       case 'NOT':
-
+        this.setState({ listOperations: listOperations.concat(())})
       case 'AND':
       case 'OR':
       case 'DELETE':
