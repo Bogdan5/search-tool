@@ -82,7 +82,7 @@ class App extends Component {
   fromMenu = (operationClicked, indexButton) => {
     switch (operationClicked) {
       case 'NOT':
-        this.setState({ listOperations: listOperations.concat(())})
+        this.setState({ listOperations: listOperations.concat((data) => )})
       case 'AND':
       case 'OR':
       case 'DELETE':
