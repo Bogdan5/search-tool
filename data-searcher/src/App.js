@@ -17,7 +17,7 @@ class App extends Component {
     super(props);
     this.textInput = React.createRef();
     this.state = {
-      currentOperation: [],
+      listElements: [],
       listOperations: [],
       keyword: '', // content of the keyword input text field
       inputVisibility: 'hidden', // in the second Keyboard, whether the position input is visible
@@ -69,6 +69,11 @@ class App extends Component {
       case 'SUMBIT':
         if (keywordButtonClicked && keyword) {
           this.setState({ listOperations: listOperations.concat(include(keyword, position || 0)) });
+          switch (keywordButtonClicked) {
+            case 'INCLUDES':
+              
+          }
+          const element = <ConditionButton >{``}</ConditionButton>
         }
 
         break;
