@@ -8,11 +8,11 @@ const ConditionButtonFormatter = (props) => {
   const { structure } = props;
   return (
     <div className='formatterClass'>
-      {structure.map(el => <DumbButton>{el.operation}</DumbButton>)}
+      {structure.map(el => <button>{el.props.children.map(elem => elem)}</button>)}
     </div>
   );
 };
 
-ConditionButtonFormatter.propTypes = { structure: PropTypes.shape };
+// ConditionButtonFormatter.propTypes = { structure: PropTypes.shape };
 
 export default ConditionButtonFormatter;

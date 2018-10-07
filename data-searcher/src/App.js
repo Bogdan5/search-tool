@@ -9,6 +9,7 @@ import ComponentEnhancer from './components/ComponentEnhancer';
 import ConditionButtonFormatter from './components/ConditionButtonFormatter';
 import DropDownMenu from './components/DropDownMenu';
 import MenuOption from './components/MenuOption';
+import ConditionButton from './components/ConditionButton';
 
 import './App.css';
 
@@ -43,17 +44,16 @@ class App extends Component {
   // function that passes data from DumbButton
   fromButton = (name) => {
     const {
-      currentOperation, listOperations, keyword, keywordButtonClicked,
+      currentOperation, listOperations, keyword, keywordButtonClicked, listElements,
       indexOp, position,
     } = this.state;
 
     // function that determines whether the keyword matches the data at the required position
-    const include = (word, posit) => data => {
+    const include = (word, posit) => (data) => {
       if (position || position > 0) {
         return data.match(new RegExp(word)).index === posit;
-      } else {
-        return data.match(new RegExp(word));
       }
+      return data.match(new RegExp(word));
     };
 
     // function that determines whether the data string starts with the keyword
@@ -65,20 +65,26 @@ class App extends Component {
     this.setState({ keywordButtonClicked: name });
     if (name === 'INCLUDES') { this.setState({ inputVisibility: 'visible' }); }
     // const len = currentOperation.length;
+    let chldList;
     switch (name) {
-      case 'SUMBIT':
-      let str;
+      case 'SUBMIT':
         if (keywordButtonClicked && keyword) {
           this.setState({ listOperations: listOperations.concat(include(keyword, position || 0)) });
           switch (keywordButtonClicked) {
             case 'INCLUDES':
-              str = `Includes ${keyword} at position ${position}`;
-            case 'STARTS WITH':
-              str = `Starts with ${keyword}`;
+              chldList = [<span>Includes</span>, <span>{keyword}</span>, <span>at position</span>, <span>{position}</span>];
+              console.log('includes');
+              break;
             case 'ENDS WITH':
-              str = `Ends with ${keyword}`;
+              chldList = [<span>Ends with</span>, <span>{keyword}</span>];
+              break;
+            default:
+              chldList = [<span>Starts with</span>, <span>{keyword}</span>];
+              break;
           }
-          const element = <ConditionButton >{str}</ConditionButton>
+          const props = { children: chldList };
+          const element = <ConditionButton {...props} />;
+          this.setState({ listElements: listElements.concat(element) });
         }
 
         break;
@@ -89,19 +95,19 @@ class App extends Component {
     }
   };
 
-  fromMenu = (operationClicked, indexButton) => {
-    switch (operationClicked) {
-      case 'NOT':
-        this.setState({ listOperations: listOperations.concat((data) => )})
-      case 'AND':
-      case 'OR':
-      case 'DELETE':
-      default:
-    }
-  }
+  // fromMenu = (operationClicked, indexButton) => {
+  //   switch (operationClicked) {
+  //     case 'NOT':
+  //       this.setState({ listOperations: listOperations.concat((data) => )})
+  //     case 'AND':
+  //     case 'OR':
+  //     case 'DELETE':
+  //     default:
+  //   }
+  // }
 
   render() {
-    const { inputVisibility, listOperations, active } = this.state;
+    const { inputVisibility, listOperations, active, listElements } = this.state;
     // enhancing DumbButtons to ButtonWithHandler through ComponentEnhancer
     const propertiesObj = { // properties object passed to ComponentEnhancer
       fromButton: this.fromButton, // a handler is added to buttons in order to pass data
@@ -142,7 +148,7 @@ class App extends Component {
           <ButtonWithHandler name='CANCEL' />
         </Keyboard>
         {/* includes the query structure */}
-        <ConditionButtonFormatter structure={listOperations} />
+        <ConditionButtonFormatter structure={listElements} />
         {/* buttons for sorting the data */}
         <Sorter />
         {/* data displayed as resulted from search and sort operations */}
