@@ -65,23 +65,24 @@ class App extends Component {
     this.setState({ keywordButtonClicked: name });
     if (name === 'INCLUDES') { this.setState({ inputVisibility: 'visible' }); }
     // const len = currentOperation.length;
-    let chldList;
+    let chldList = [];
+    let lst = [];
     switch (name) {
       case 'SUBMIT':
         if (keywordButtonClicked && keyword) {
           this.setState({ listOperations: listOperations.concat(include(keyword, position || 0)) });
           switch (keywordButtonClicked) {
             case 'INCLUDES':
-              chldList = [<span>Includes</span>, <span>{keyword}</span>, <span>at position</span>, <span>{position}</span>];
-              console.log('includes');
+              lst = ['Includes', keyword, 'at position', position];
               break;
             case 'ENDS WITH':
-              chldList = [<span>Ends with</span>, <span>{keyword}</span>];
+              lst = ['Ends with', keyword];
               break;
             default:
-              chldList = [<span>Starts with</span>, <span>{keyword}</span>];
+              lst = [<span>Starts with</span>, <span>{keyword}</span>];
               break;
           }
+          chldList = lst.map((el, index) => <span key={index}>{` ${el}`}</span>);
           const props = { children: chldList };
           const element = <ConditionButton {...props} />;
           this.setState({ listElements: listElements.concat(element) });
