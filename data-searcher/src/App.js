@@ -67,13 +67,18 @@ class App extends Component {
     // const len = currentOperation.length;
     switch (name) {
       case 'SUMBIT':
+      let str;
         if (keywordButtonClicked && keyword) {
           this.setState({ listOperations: listOperations.concat(include(keyword, position || 0)) });
           switch (keywordButtonClicked) {
             case 'INCLUDES':
-              
+              str = `Includes ${keyword} at position ${position}`;
+            case 'STARTS WITH':
+              str = `Starts with ${keyword}`;
+            case 'ENDS WITH':
+              str = `Ends with ${keyword}`;
           }
-          const element = <ConditionButton >{``}</ConditionButton>
+          const element = <ConditionButton >{str}</ConditionButton>
         }
 
         break;
