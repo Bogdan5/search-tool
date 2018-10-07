@@ -7,8 +7,6 @@ import Header from './components/Header';
 import Sorter from './components/Sorter';
 import ComponentEnhancer from './components/ComponentEnhancer';
 import ConditionButtonFormatter from './components/ConditionButtonFormatter';
-import DropDownMenu from './components/DropDownMenu';
-import MenuOption from './components/MenuOption';
 import ConditionButton from './components/ConditionButton';
 
 import './App.css';
@@ -44,7 +42,7 @@ class App extends Component {
   // function that passes data from DumbButton
   fromButton = (name) => {
     const {
-      currentOperation, listOperations, keyword, keywordButtonClicked, listElements,
+      listOperations, keyword, keywordButtonClicked, listElements,
       indexOp, position,
     } = this.state;
 
@@ -79,11 +77,11 @@ class App extends Component {
               lst = ['Ends with', keyword];
               break;
             default:
-              lst = [<span>Starts with</span>, <span>{keyword}</span>];
+              lst = ['Starts with', keyword];
               break;
           }
           chldList = lst.map((el, index) => <span key={index}>{` ${el}`}</span>);
-          const props = { children: chldList };
+          const props = { children: chldList, key: listOperations.length };
           const element = <ConditionButton {...props} />;
           this.setState({ listElements: listElements.concat(element) });
         }
@@ -117,8 +115,7 @@ class App extends Component {
       keywordButtonClicked: this.state, // what element button is clicked
     };
     const ButtonWithHandler = ComponentEnhancer(DumbButton, propertiesObj);
-    const propertiesMenu = { fromMenu: this.fromMenu };
-    const MenuElementWithHandler = ComponentEnhancer(MenuOption, propertiesMenu);
+    
 
     //
     return (
@@ -154,12 +151,6 @@ class App extends Component {
         <Sorter />
         {/* data displayed as resulted from search and sort operations */}
         <DataDisplay dataLoad={this.state} />
-        <DropDownMenu>
-          <MenuElementWithHandler name='not' />
-          <MenuElementWithHandler name='and' />
-          <MenuElementWithHandler name='or' />
-          <MenuElementWithHandler name='delete' />
-        </DropDownMenu>
       </div>
     );
   }
