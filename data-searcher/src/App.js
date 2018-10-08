@@ -39,6 +39,8 @@ class App extends Component {
     this.setState({ position: e.target.value });
   }
 
+  doSomething = () => console.log('clicked in App');
+
   // function that passes data from DumbButton
   fromButton = (name) => {
     const {
