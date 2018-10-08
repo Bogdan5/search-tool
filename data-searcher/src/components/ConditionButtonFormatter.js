@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import DropDownMenu from './DropDownMenu';
 import ComponentEnhancer from './ComponentEnhancer';
 import MenuOption from './MenuOption';
+import ConditionButton from './ConditionButton';
 import '../App.css';
 
 // the area where queries are dislayed as they are constructed
@@ -14,7 +15,7 @@ const ConditionButtonFormatter = (props) => {
   const MenuElementWithHandler = ComponentEnhancer(MenuOption, propertiesMenu);
   return (
     <div className='formatterClass'>
-      {structure.map(el => <button type='submit' onClick={conditionalClickHandler}>{el.props.children.map(elem => elem)}</button>)}
+      {structure.map(el => <ConditionButton {...el} />)}
       <DropDownMenu>
         <MenuElementWithHandler name='not' />
         <MenuElementWithHandler name='and' />

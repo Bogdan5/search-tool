@@ -24,6 +24,7 @@ class App extends Component {
       active: [], // array of buttons active
       indexOp: 0, // how many elements have been added in an operation
       position: 0,
+      numberButtons: 0
     };
   }
 
@@ -45,7 +46,7 @@ class App extends Component {
   fromButton = (name) => {
     const {
       listOperations, keyword, keywordButtonClicked, listElements,
-      indexOp, position,
+      indexOp, position, numberButtons
     } = this.state;
 
     // function that determines whether the keyword matches the data at the required position
@@ -83,9 +84,14 @@ class App extends Component {
               break;
           }
           chldList = lst.map((el, index) => <span key={index}>{` ${el}`}</span>);
-          const props = { children: chldList, key: listOperations.length };
-          const element = <ConditionButton {...props} />;
-          this.setState({ listElements: listElements.concat(element) });
+          // const element = <ConditionButton {...props} />;
+          this.setState({ listElements: listElements.concat(propsArray), numberButtons: numberButtons + 1 });
+          const propsArray = {
+            children: chldList,
+            key: listOperations.length,
+            fromConditional: this.doSomething,
+            id: numberButtons,
+          };
         }
 
         break;
