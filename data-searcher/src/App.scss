@@ -109,13 +109,13 @@ body{
 }
 
 .dropDownMenu{
-  // position: absolute;
+  position: absolute;
   transition: height 600ms ease-in-out;
   height: 120px;
   width: 200px;
   background-color: silver;
   color: black;
-  // z-index: -5;
+  z-index: -5;
 }
 
 .menuOption{

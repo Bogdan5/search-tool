@@ -25,6 +25,7 @@ class App extends Component {
       indexOp: 0, // how many elements have been added in an operation
       position: 0,
       idConditional: 0,
+      menuVisible: false,
     };
   }
 
@@ -105,6 +106,7 @@ class App extends Component {
 
   fromMenu = (operationClicked, indexButton) => {
     console.log(`operation ${operationClicked} button ${indexButton}`);
+    this.setState({ menuVisible: false });
     // switch (operationClicked) {
     //   case 'NOT':
     //     this.setState({ listOperations: listOperations.concat((data) => )})
@@ -116,7 +118,7 @@ class App extends Component {
   }
 
   render() {
-    const { inputVisibility, listOperations, active, listElements } = this.state;
+    const { inputVisibility, menuVisible, active, listElements } = this.state;
     // enhancing DumbButtons to ButtonWithHandler through ComponentEnhancer
     const propertiesObj = { // properties object passed to ComponentEnhancer
       fromButton: this.fromButton, // a handler is added to buttons in order to pass data
@@ -156,7 +158,10 @@ class App extends Component {
           <ButtonWithHandler name='CANCEL' />
         </Keyboard>
         {/* includes the query structure */}
-        <ConditionButtonFormatter structure={listElements} fromMenu={this.fromMenu}/>
+        <ConditionButtonFormatter
+          structure={listElements} fromMenu={this.fromMenu}
+          menuVisible={menuVisible}
+        />
         {/* buttons for sorting the data */}
         <Sorter />
         {/* data displayed as resulted from search and sort operations */}

@@ -76,11 +76,13 @@ body {
   visibility: visible; }
 
 .dropDownMenu {
+  position: absolute;
   transition: height 600ms ease-in-out;
   height: 120px;
   width: 200px;
   background-color: silver;
-  color: black; }
+  color: black;
+  z-index: -5; }
 
 .menuOption {
   transition: height 0 ease-in-out;
