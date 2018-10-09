@@ -20,9 +20,14 @@ class ConditionButtonFormatter extends Component {
     const { fromMenu } = this.props;
     const { idConditionalButtonClicked } = this.state;
     fromMenu(name, idConditionalButtonClicked);
+    this.setState({ menuVisible: false });
+    console.log('menu Click' + name);
   }
 
-  conditionalClickHandler =(id) => { this.setState({ idConditionalButtonClicked: id }); }
+  conditionalClickHandler =(id) => {
+    this.setState({ idConditionalButtonClicked: id, menuVisible: true });
+    console.log('conditinal Click' + id);
+  }
 
   render() {
     const { menuVisible } = this.state;
@@ -32,7 +37,7 @@ class ConditionButtonFormatter extends Component {
     return (
       <div className='formatterClass'>
         {structure.map(el => <ConditionButton {...el} fromFormatter={this.conditionalClickHandler} />)}
-        <DropDownMenu visibility={menuVisible}>
+        <DropDownMenu menuVisible={menuVisible}>
           <MenuElementWithHandler name='not' />
           <MenuElementWithHandler name='and' />
           <MenuElementWithHandler name='or' />

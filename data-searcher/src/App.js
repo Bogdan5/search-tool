@@ -75,16 +75,16 @@ class App extends Component {
           this.setState({ listOperations: listOperations.concat(include(keyword, position || 0)) });
           switch (keywordButtonClicked) {
             case 'INCLUDES':
-              lst = ['Includes', keyword, 'at position', position];
+              lst = ['Includes ', keyword, ' at position ', position];
               break;
             case 'ENDS WITH':
-              lst = ['Ends with', keyword];
+              lst = ['Ends with ', keyword];
               break;
             default:
-              lst = ['Starts with', keyword];
+              lst = ['Starts with ', keyword];
               break;
           }
-          chldList = lst.map((el, index) => <span key={index}>{` ${el}`}</span>);
+          chldList = lst.map((el, index) => <span key={index}>{`${el}`}</span>);
           // const element = <ConditionButton {...props} />;
           this.setState({ idConditional: idConditional + 1 });
           const propsArray = {

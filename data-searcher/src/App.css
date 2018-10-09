@@ -106,3 +106,10 @@ body {
 
 .z-invisible {
   z-index: -5; }
+
+.ConditionButton {
+  padding: 3px 10px;
+  border: 1px solid black;
+  border-radius: 2px; }
+  .ConditionButton > span:nth-child(2) {
+    background-color: aqua; }

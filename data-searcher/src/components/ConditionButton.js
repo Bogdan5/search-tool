@@ -8,9 +8,13 @@ const ConditionButton = (props) => {
     fromFormatter(id);
   };
   return (
-    <div onClick={handler}>
+    <button
+      className='ConditionButton' onClick={handler}
+      tabIndex={0} onKeyDown={handler}
+      type='submit'
+    >
       {children}
-    </div>
+    </button>
   );
 };
 
