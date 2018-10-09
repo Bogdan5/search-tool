@@ -10,7 +10,7 @@ import '../App.css';
 const ConditionButtonFormatter = (props) => {
   const { structure } = props;
   const doStuff = name => console.log('clicked:' + name);
-  const conditionalClickHandler = () => console.log('conditional clicked in formatter');
+  const conditionalClickHandler = (id) => console.log(`conditional no ${id} clicked in formatter`);
   const propertiesMenu = { fromMenu: doStuff };
   const MenuElementWithHandler = ComponentEnhancer(MenuOption, propertiesMenu);
   return (
