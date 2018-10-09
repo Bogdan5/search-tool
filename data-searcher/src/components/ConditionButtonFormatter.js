@@ -8,10 +8,11 @@ import '../App.css';
 
 // the area where queries are dislayed as they are constructed
 const ConditionButtonFormatter = (props) => {
-  const { structure } = props;
-  const doStuff = name => console.log('clicked:' + name);
-  const conditionalClickHandler = (id) => console.log(`conditional no ${id} clicked in formatter`);
-  const propertiesMenu = { fromMenu: doStuff };
+  const { structure, fromMenu } = props;
+  let idConditionalButtonClicked = null;
+  const menuClickHandler = name => fromMenu(name, idConditionalButtonClicked);
+  function conditionalClickHandler(id) { idConditionalButtonClicked = id; }
+  const propertiesMenu = { fromMenu: menuClickHandler };
   const MenuElementWithHandler = ComponentEnhancer(MenuOption, propertiesMenu);
   return (
     <div className='formatterClass'>

@@ -103,16 +103,17 @@ class App extends Component {
     }
   };
 
-  // fromMenu = (operationClicked, indexButton) => {
-  //   switch (operationClicked) {
-  //     case 'NOT':
-  //       this.setState({ listOperations: listOperations.concat((data) => )})
-  //     case 'AND':
-  //     case 'OR':
-  //     case 'DELETE':
-  //     default:
-  //   }
-  // }
+  fromMenu = (operationClicked, indexButton) => {
+    console.log(`operation ${operationClicked} button ${indexButton}`);
+    // switch (operationClicked) {
+    //   case 'NOT':
+    //     this.setState({ listOperations: listOperations.concat((data) => )})
+    //   case 'AND':
+    //   case 'OR':
+    //   case 'DELETE':
+    //   default:
+    // }
+  }
 
   render() {
     const { inputVisibility, listOperations, active, listElements } = this.state;
@@ -155,7 +156,7 @@ class App extends Component {
           <ButtonWithHandler name='CANCEL' />
         </Keyboard>
         {/* includes the query structure */}
-        <ConditionButtonFormatter structure={listElements} />
+        <ConditionButtonFormatter structure={listElements} fromMenu={this.fromMenu}/>
         {/* buttons for sorting the data */}
         <Sorter />
         {/* data displayed as resulted from search and sort operations */}
