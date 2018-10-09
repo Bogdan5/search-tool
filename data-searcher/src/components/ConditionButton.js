@@ -3,9 +3,9 @@ import '../App.css';
 
 // basic button pressed to construct queries
 const ConditionButton = (props) => {
-  const { children, fromConditional } = props;
+  const { children, fromFormatter } = props;
   const handler = () => {
-    fromConditional();
+    fromFormatter();
   };
   return (
     <div onClick={handler}>

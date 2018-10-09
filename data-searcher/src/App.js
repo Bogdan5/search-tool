@@ -85,13 +85,13 @@ class App extends Component {
           }
           chldList = lst.map((el, index) => <span key={index}>{` ${el}`}</span>);
           // const element = <ConditionButton {...props} />;
-          this.setState({ listElements: listElements.concat(propsArray), numberButtons: numberButtons + 1 });
           const propsArray = {
             children: chldList,
             key: listOperations.length,
             fromConditional: this.doSomething,
             id: numberButtons,
           };
+          this.setState({ listElements: listElements.concat(propsArray), numberButtons: numberButtons + 1 });
         }
 
         break;
