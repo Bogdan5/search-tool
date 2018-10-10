@@ -41,7 +41,7 @@ class App extends Component {
     this.setState({ position: e.target.value });
   }
 
-  doSomething = () => console.log('clicked in App');
+  conditionalClickHandler = () => console.log('conditional clicked in App');
 
   // function that passes data from DumbButton
   fromButton = (name) => {
@@ -90,7 +90,7 @@ class App extends Component {
           const propsArray = {
             children: chldList,
             key: listOperations.length,
-            fromConditional: this.doSomething,
+            fromConditional: this.conditionalClickHandler,
             id: idConditional,
           };
           this.setState({ listElements: listElements.concat(propsArray) });
@@ -127,7 +127,6 @@ class App extends Component {
       keywordButtonClicked: this.state, // what element button is clicked
     };
     const ButtonWithHandler = ComponentEnhancer(DumbButton, propertiesObj);
-    
 
     //
     return (

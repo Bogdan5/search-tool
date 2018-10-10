@@ -111,5 +111,8 @@ body {
   padding: 3px 10px;
   border: 1px solid black;
   border-radius: 2px; }
-  .ConditionButton > span:nth-child(2) {
-    background-color: aqua; }
+  .ConditionButton > span:nth-child(even) {
+    background-color: aqua;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 0 5px; }
