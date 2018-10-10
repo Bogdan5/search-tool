@@ -13,6 +13,7 @@ class ConditionButtonFormatter extends Component {
     this.state = {
       menuVisible: false,
       idConditionalButtonClicked: null,
+      mergerArray: [null, null, null],
     };
   }
 
@@ -21,11 +22,19 @@ class ConditionButtonFormatter extends Component {
     const { idConditionalButtonClicked } = this.state;
     fromMenu(name, idConditionalButtonClicked);
     this.setState({ menuVisible: false });
-    console.log('menu Click' + name);
+    console.log('menu Click:' + name);
   }
 
   conditionalClickHandler =(id) => {
+    const { mergerArray } = this.state;
     this.setState({ idConditionalButtonClicked: id, menuVisible: true });
+    if (mergerArray[1]) {
+      this.setState({ mergerArray: [mergerArray[0], mergerArray[1], id] });
+      // send to App component the array
+      this.setState({ mergerArray: [null, null, null] });
+    } else {
+      this.setState({ mergerArray: [id, null, null] });
+    }
     console.log('conditinal Click' + id);
   }
 
@@ -45,8 +54,8 @@ class ConditionButtonFormatter extends Component {
         </DropDownMenu>
       </div>
     );
-  };
-};
+  }
+}
 
 // ConditionButtonFormatter.propTypes = { structure: PropTypes.shape };
 
