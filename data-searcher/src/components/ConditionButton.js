@@ -3,9 +3,10 @@ import '../App.css';
 
 // basic button pressed to construct queries
 const ConditionButton = (props) => {
-  const { children, fromFormatter, id } = props;
+  const { children, fromFormatter, id, fromConditional } = props;
   const handler = () => {
-    fromFormatter(id);
+    // fromFormatter(id);
+    fromConditional(id);
   };
   return (
     <button

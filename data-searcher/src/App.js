@@ -8,6 +8,9 @@ import Sorter from './components/Sorter';
 import ComponentEnhancer from './components/ComponentEnhancer';
 import ConditionButtonFormatter from './components/ConditionButtonFormatter';
 import ConditionButton from './components/ConditionButton';
+import DropDownMenu from './components/DropDownMenu';
+import MenuOption from './components/MenuOption';
+
 
 import './App.css';
 
@@ -85,15 +88,15 @@ class App extends Component {
               break;
           }
           chldList = lst.map((el, index) => <span key={index}>{`${el}`}</span>);
-          // const element = <ConditionButton {...props} />;
           this.setState({ idConditional: idConditional + 1 });
           const propsArray = {
             children: chldList,
-            key: listOperations.length,
+            key: idConditional,
             fromConditional: this.conditionalClickHandler,
             id: idConditional,
           };
-          this.setState({ listElements: listElements.concat(propsArray) });
+          const element = <ConditionButton {...propsArray} />;
+          this.setState({ listElements: listElements.concat(element) });
         }
 
         break;
@@ -117,6 +120,10 @@ class App extends Component {
     // }
   }
 
+  // fromFormatter = (arr) => {
+
+  // }
+
   render() {
     const { inputVisibility, menuVisible, active, listElements } = this.state;
     // enhancing DumbButtons to ButtonWithHandler through ComponentEnhancer
@@ -127,6 +134,9 @@ class App extends Component {
       keywordButtonClicked: this.state, // what element button is clicked
     };
     const ButtonWithHandler = ComponentEnhancer(DumbButton, propertiesObj);
+
+    const propertiesMenu = { fromMenu: this.menuClickHandler };
+    const MenuElementWithHandler = ComponentEnhancer(MenuOption, propertiesMenu);
 
     //
     return (
@@ -157,10 +167,15 @@ class App extends Component {
           <ButtonWithHandler name='CANCEL' />
         </Keyboard>
         {/* includes the query structure */}
-        <ConditionButtonFormatter
-          structure={listElements} fromMenu={this.fromMenu}
-          menuVisible={menuVisible}
-        />
+        <ConditionButtonFormatter>
+          {listElements.map(el => el)}
+          <DropDownMenu menuVisible={menuVisible}>
+            <MenuElementWithHandler name='not' />
+            <MenuElementWithHandler name='and' />
+            <MenuElementWithHandler name='or' />
+            <MenuElementWithHandler name='delete' />
+          </DropDownMenu>
+        </ConditionButtonFormatter>
         {/* buttons for sorting the data */}
         <Sorter />
         {/* data displayed as resulted from search and sort operations */}
