@@ -29,6 +29,8 @@ class App extends Component {
       position: 0,
       idConditional: 0,
       menuVisible: false,
+      mergerArray: [null, null, null],
+      idConditionalButtonClicked: null,
     };
   }
 
@@ -44,7 +46,34 @@ class App extends Component {
     this.setState({ position: e.target.value });
   }
 
-  conditionalClickHandler = () => console.log('conditional clicked in App');
+  merger = (...arr) => {
+    const { listElements } = this.state;
+    const searcher = (id) => {
+      listElements.map((el, index) => {
+        if (el.props.id === id) { return index; }
+      });
+    }
+    const replacer = (...arr) => {
+      if (arr.length === 1) {
+
+      }
+    };
+    if (arr.length === 2) {
+
+    }
+  }
+
+  conditionalClickHandler = (id) => {
+    console.log('conditional clicked in App');
+    const { mergerArray } = this.state;
+    this.setState({ idConditionalButtonClicked: id, menuVisible: true });
+    if (mergerArray[1]) {
+      this.merger();
+      this.setState({ mergerArray: [null, null, null] });
+    } else {
+      this.setState({ mergerArray: [id, null, null] });
+    }
+  };
 
   // function that passes data from DumbButton
   fromButton = (name) => {
