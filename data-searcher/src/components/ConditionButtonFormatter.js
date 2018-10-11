@@ -7,7 +7,7 @@ import ConditionButton from './ConditionButton';
 import '../App.css';
 
 // the area where queries are dislayed as they are constructed
-class ConditionButtonFormatter extends Component {
+const ConditionButtonFormatter = (props) => {
   // constructor(props) {
   //   super(props);
   //   this.state = {

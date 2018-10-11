@@ -11,5 +11,6 @@ module.exports = {
         "react/require-default-props": [0, { forbidDefaultForRequired: true }],
         "react/prop-types": [0],
         "object-curly-newline": ["error", { "multiline": true }],
+        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
       }
 };

@@ -49,9 +49,10 @@ class App extends Component {
   merger = (...arr) => {
     const { listElements } = this.state;
     const searcher = (id) => {
-      listElements.map((el, index) => {
-        if (el.props.id === id) { return index; }
-      });
+      for (let i; i < listElements.length; i++) {
+        if (listElements[i] === id) { return i; }
+      }
+      return -1;
     }
     const replacer = (...arr) => {
       if (arr.length === 1) {
