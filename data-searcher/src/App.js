@@ -53,7 +53,7 @@ class App extends Component {
         if (listElements[i] === id) { return i; }
       }
       return -1;
-    }
+    };
     const replacer = (...arr) => {
       if (arr.length === 1) {
 
@@ -69,12 +69,17 @@ class App extends Component {
     const { mergerArray } = this.state;
     this.setState({ idConditionalButtonClicked: id, menuVisible: true });
     if (mergerArray[1]) {
-      this.merger();
+      this.merger(mergerArray[0], mergerArray[1], id);
       this.setState({ mergerArray: [null, null, null] });
     } else {
       this.setState({ mergerArray: [id, null, null] });
     }
   };
+
+  menuClickHandler = (name) => {
+    console.log('menu clicked in App' + name);
+    this.setState({ menuVisible: false });
+  }
 
   // function that passes data from DumbButton
   fromButton = (name) => {
