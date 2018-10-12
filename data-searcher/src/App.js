@@ -77,8 +77,17 @@ class App extends Component {
   };
 
   menuClickHandler = (name) => {
+    const { mergerArray } = this.props;
     console.log('menu clicked in App' + name);
     this.setState({ menuVisible: false });
+    if (mergerArray[0]) {
+      if (mergerArray[1]) {
+        if (name === 'NOT') { this.merger(mergerArray[0], 'NOT')}
+        else {
+          this.setState({ mergerArray: [mergerArray[0], name, null] });
+        }
+      }
+    }
   }
 
   // function that passes data from DumbButton

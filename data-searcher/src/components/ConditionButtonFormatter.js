@@ -41,14 +41,13 @@ const ConditionButtonFormatter = (props) => {
   //   console.log('conditinal Click' + id);
   // }
 
-  render() {
     // const { menuVisible } = this.state;
     // const { structure } = this.props;
     // const propertiesMenu = { fromMenu: this.menuClickHandler };
     // const MenuElementWithHandler = ComponentEnhancer(MenuOption, propertiesMenu);
     return (
       <div className='formatterClass'>
-        {this.props.children}
+        {props.children}
         {/* {structure.map(el => <ConditionButton {...el} fromFormatter={this.conditionalClickHandler} />)}
         <DropDownMenu menuVisible={menuVisible}>
           <MenuElementWithHandler name='not' />
@@ -58,7 +57,6 @@ const ConditionButtonFormatter = (props) => {
         </DropDownMenu> */}
       </div>
     );
-  }
 }
 
 // ConditionButtonFormatter.propTypes = { structure: PropTypes.shape };
