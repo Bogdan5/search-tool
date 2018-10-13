@@ -53,9 +53,9 @@ class App extends Component {
       newProps.id = idConditional + 1;
       newProps.key = idConditional + 1;
       return (
-        <ConditionButton {...newProps}>
+        <ConditionButton {...newProps} fromConditional={this.conditionalClickHandler}>
           {element1}
-          <span>{name}</span>
+          <div>{name}</div>
           {element2}
         </ConditionButton>
       );
@@ -71,7 +71,7 @@ class App extends Component {
     if (arr.length === 2 && arr[1] === 'NOT') {
       console.log('x props' + JSON.stringify(x));
       this.setState({ listElements: a.concat(newElement(null, arr[1], x)) });
-    } else if (arr.length === 2) {
+    } else if (arr.length === 3) {
       const y = a.splice(searcher(arr[2]));
       this.setState({ listElements: a.concat(newElement(y, arr[1], x)) });
     }
@@ -80,7 +80,7 @@ class App extends Component {
   conditionalClickHandler = (id) => {
     console.log('conditional clicked in App ' + id);
     const { mergerArray } = this.state;
-    this.setState({ idConditionalButtonClicked: id, menuVisible: true });
+    this.setState({ menuVisible: true });
     if (mergerArray[1]) {
       this.merger(mergerArray[0], mergerArray[1], id);
       this.setState({ mergerArray: [null, null, null] });
