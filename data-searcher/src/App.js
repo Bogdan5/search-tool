@@ -47,19 +47,32 @@ class App extends Component {
   }
 
   merger = (...arr) => {
-    const { listElements } = this.state;
+    const { listElements, idConditional } = this.state;
+    const newElement = (element1, name, element2) => {
+      const newProps = { ...element2.props };
+      newProps.id = idConditional + 1;
+      newProps.key = idConditional + 1;
+      return (
+        <ConditionButton {...newProps}>
+          {element1}
+          <span>{name}</span>
+          {element2}
+        </ConditionButton>
+      );
+    };
     const searcher = (id) => {
       for (let i; i < listElements.length; i++) {
         if (listElements[i] === id) { return i; }
       }
       return -1;
     };
-    const replacer = (...arr) => {
-      if (arr.length === 1) {
-
-      }
-    };
-    if (arr.length === 2) {
+    let a = [...listElements];
+    let x = a.splice(searcher(arr[0]), 1);
+    if (arr.length === 2 && arr[1] === 'NOT') {
+      
+      this.setState({ listElements: a.concat(newElement(null, arr[1], x)) });
+    } else if (arr.length === 2) {
+      a.splice(searcher(arr[2]));
 
     }
   }
@@ -82,8 +95,9 @@ class App extends Component {
     this.setState({ menuVisible: false });
     if (mergerArray[0]) {
       if (mergerArray[1]) {
-        if (name === 'NOT') { this.merger(mergerArray[0], 'NOT')}
-        else {
+        if (name === 'NOT') {
+          this.merger(mergerArray[0], 'NOT');
+        } else {
           this.setState({ mergerArray: [mergerArray[0], name, null] });
         }
       }
@@ -140,7 +154,9 @@ class App extends Component {
             id: idConditional,
           };
           const element = <ConditionButton {...propsArray} />;
-          this.setState({ listElements: listElements.concat(element) });
+          this.setState(
+            { listElements: listElements.concat(element), idConditional: idConditional + 1 }
+          );
         }
 
         break;
@@ -214,10 +230,10 @@ class App extends Component {
         <ConditionButtonFormatter>
           {listElements.map(el => el)}
           <DropDownMenu menuVisible={menuVisible}>
-            <MenuElementWithHandler name='not' />
-            <MenuElementWithHandler name='and' />
-            <MenuElementWithHandler name='or' />
-            <MenuElementWithHandler name='delete' />
+            <MenuElementWithHandler name='NOT' />
+            <MenuElementWithHandler name='AND' />
+            <MenuElementWithHandler name='OR' />
+            <MenuElementWithHandler name='DELETE' />
           </DropDownMenu>
         </ConditionButtonFormatter>
         {/* buttons for sorting the data */}
