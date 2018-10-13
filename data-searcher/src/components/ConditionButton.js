@@ -9,13 +9,13 @@ const ConditionButton = (props) => {
     fromConditional(id);
   };
   return (
-    <button
+    <div
       className='ConditionButton' onClick={handler}
       tabIndex={0} onKeyDown={handler}
-      type='submit'
+      role='button'
     >
       {children}
-    </button>
+    </div>
   );
 };
 

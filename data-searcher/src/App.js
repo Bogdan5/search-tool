@@ -66,19 +66,19 @@ class App extends Component {
       }
       return -1;
     };
-    let a = [...listElements];
-    let x = a.splice(searcher(arr[0]), 1);
+    const a = [...listElements];
+    const x = a.splice(searcher(arr[0]), 1);
     if (arr.length === 2 && arr[1] === 'NOT') {
-      
+      console.log('x props' + JSON.stringify(x));
       this.setState({ listElements: a.concat(newElement(null, arr[1], x)) });
     } else if (arr.length === 2) {
-      a.splice(searcher(arr[2]));
-
+      const y = a.splice(searcher(arr[2]));
+      this.setState({ listElements: a.concat(newElement(y, arr[1], x)) });
     }
   }
 
   conditionalClickHandler = (id) => {
-    console.log('conditional clicked in App');
+    console.log('conditional clicked in App ' + id);
     const { mergerArray } = this.state;
     this.setState({ idConditionalButtonClicked: id, menuVisible: true });
     if (mergerArray[1]) {
@@ -90,16 +90,16 @@ class App extends Component {
   };
 
   menuClickHandler = (name) => {
-    const { mergerArray } = this.props;
-    console.log('menu clicked in App' + name);
+    const { mergerArray } = this.state;
     this.setState({ menuVisible: false });
-    if (mergerArray[0]) {
-      if (mergerArray[1]) {
-        if (name === 'NOT') {
-          this.merger(mergerArray[0], 'NOT');
-        } else {
-          this.setState({ mergerArray: [mergerArray[0], name, null] });
-        }
+    if (mergerArray[0] !== null) {
+      const mer = [...mergerArray];
+      mer[1] = name;
+      console.log('mergerArray ' + this.state.mergerArray);
+      if (name === 'NOT') {
+        this.merger(mergerArray[0], 'NOT');
+      } else {
+        this.setState({ mergerArray: mer });
       }
     }
   }
