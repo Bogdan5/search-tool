@@ -56,15 +56,9 @@ body{
   padding: 20px;
 }
 
-.keyboardClass{
+.keyboardGeneric{
   @include row-flex;
   font-size: 15px;
-  & input{
-    height: 20px;
-    background-color: rgb(229, 182, 238);
-    border:1px solid $dark-purple;
-    border-radius: 2px;
-  }
   &>div{
     @include round-border($green);
     @include vertical-center-flex;
@@ -74,12 +68,23 @@ body{
     }
     &:nth-child(2){
       width: 80%;
+      background-color: rgb(204, 183, 183);
       @include row-flex;
       &>*{
         margin: 0 10px;
       }
     }
   }
+}
+
+.keyboardSearchKeyword{
+  & input{
+    height: 20px;
+    background-color: rgb(229, 182, 238);
+    border:1px solid $dark-purple;
+    border-radius: 2px;
+  }
+  
 }
 
 .buttonGroup{
@@ -91,8 +96,8 @@ body{
 }
 
 .formatterClass{
-  @include round-border($green);
-  background-color: rgb(200, 206, 208);
+  // @include round-border($green);
+  // background-color: rgb(200, 206, 208);
   min-height: 200px;
 }
 

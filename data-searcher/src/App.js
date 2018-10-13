@@ -198,17 +198,27 @@ class App extends Component {
     const propertiesMenu = { fromMenu: this.menuClickHandler };
     const MenuElementWithHandler = ComponentEnhancer(MenuOption, propertiesMenu);
 
+    const selectColumn = (
+      <select>
+        <option value='colAll'>Selects fields</option>
+        <option value='colAll'>All fields</option>
+        <option value='col1'>Column 1</option>
+        <option value='col2'>Column 2</option>
+        <option value='col3'>Column 3</option>
+      </select>
+    );
+
     //
     return (
       <div className='App'>
         <Header title='Data display - Search and sort' />
         { /* includes description and operator buttons */ }
-        <Keyboard typeContent='Boolean operators'>
+        <Keyboard typeContent='Boolean operators' classProp=''>
           <ButtonWithHandler name='AND' />
           <ButtonWithHandler name='OR' />
           <ButtonWithHandler name='NOT' />
         </Keyboard>
-        <Keyboard typeContent='Search keyword'>
+        <Keyboard typeContent='Search keyword' classProp=' keyboardSearchKeyword'>
           <ButtonGroup>
             <ButtonWithHandler name='INCLUDES' />
             <ButtonWithHandler name='STARTS WITH' />
@@ -227,15 +237,17 @@ class App extends Component {
           <ButtonWithHandler name='CANCEL' />
         </Keyboard>
         {/* includes the query structure */}
-        <ConditionButtonFormatter>
-          {listElements.map(el => el)}
-          <DropDownMenu menuVisible={menuVisible}>
-            <MenuElementWithHandler name='NOT' />
-            <MenuElementWithHandler name='AND' />
-            <MenuElementWithHandler name='OR' />
-            <MenuElementWithHandler name='DELETE' />
-          </DropDownMenu>
-        </ConditionButtonFormatter>
+        <Keyboard typeContent={selectColumn} classProp=''>
+          <ConditionButtonFormatter>
+            {listElements.map(el => el)}
+            <DropDownMenu menuVisible={menuVisible}>
+              <MenuElementWithHandler name='NOT' />
+              <MenuElementWithHandler name='AND' />
+              <MenuElementWithHandler name='OR' />
+              <MenuElementWithHandler name='DELETE' />
+            </DropDownMenu>
+          </ConditionButtonFormatter>
+        </Keyboard>
         {/* buttons for sorting the data */}
         <Sorter />
         {/* data displayed as resulted from search and sort operations */}

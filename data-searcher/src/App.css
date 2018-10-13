@@ -31,29 +31,31 @@ body {
   font-size: 25px;
   padding: 20px; }
 
-.keyboardClass {
+.keyboardGeneric {
   display: flex;
   flex-direction: row;
   font-size: 15px; }
-  .keyboardClass input {
-    height: 20px;
-    background-color: #e5b6ee;
-    border: 1px solid #410b40;
-    border-radius: 2px; }
-  .keyboardClass > div {
+  .keyboardGeneric > div {
     border: 1px solid #0e3b31;
     border-radius: 2px;
     display: flex;
     align-items: center;
     padding: 15px; }
-    .keyboardClass > div:first-child {
+    .keyboardGeneric > div:first-child {
       width: 20%; }
-    .keyboardClass > div:nth-child(2) {
+    .keyboardGeneric > div:nth-child(2) {
       width: 80%;
+      background-color: red;
       display: flex;
       flex-direction: row; }
-      .keyboardClass > div:nth-child(2) > * {
+      .keyboardGeneric > div:nth-child(2) > * {
         margin: 0 10px; }
+
+.keyboardSearchKeyword input {
+  height: 20px;
+  background-color: #e5b6ee;
+  border: 1px solid #410b40;
+  border-radius: 2px; }
 
 .buttonGroup > button {
   min-width: 120px;
@@ -61,9 +63,6 @@ body {
   margin: 5px 0; }
 
 .formatterClass {
-  border: 1px solid #0e3b31;
-  border-radius: 2px;
-  background-color: #c8ced0;
   min-height: 200px; }
 
 .positionInput {
