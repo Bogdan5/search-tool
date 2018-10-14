@@ -98,7 +98,7 @@ body{
 .formatterClass{
   // @include round-border($green);
   // background-color: rgb(200, 206, 208);
-  min-height: 200px;
+  min-height: 100px;
 }
 
 .positionInput{
@@ -119,8 +119,8 @@ body{
   height: 120px;
   width: 200px;
   background-color: silver;
-  color: black;
-  z-index: -5;
+  color: rgb(16, 2, 17);
+  display: none;
 }
 
 .menuOption{
@@ -148,11 +148,11 @@ body{
 
 // control whether the drop down menu is visible
 .z-visible{
-  z-index:5;
+  display: block;
 }
 
 .z-invisible{
-  z-index: -5;
+  display: none;
 }
 
 .ConditionButton{
@@ -172,4 +172,13 @@ body{
     display: inline-block;
     padding: 0 5px;
   }
+}
+
+.selector{
+  min-width: 140px;
+  height: 30px;
+  background-color: rgb(89, 196, 204);
+  border: 1px solid rgb(68, 16, 16);
+  border-radius: 2px 0;
+  font-size: 14px;
 }

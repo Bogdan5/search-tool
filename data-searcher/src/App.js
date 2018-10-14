@@ -199,7 +199,7 @@ class App extends Component {
     const MenuElementWithHandler = ComponentEnhancer(MenuOption, propertiesMenu);
 
     const selectColumn = (
-      <select>
+      <select className='selector'>
         <option value='colAll'>Selects fields</option>
         <option value='colAll'>All fields</option>
         <option value='col1'>Column 1</option>
