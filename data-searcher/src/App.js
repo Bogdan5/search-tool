@@ -112,7 +112,7 @@ class App extends Component {
   fromButton = (name) => {
     const {
       listOperations, keyword, keywordButtonClicked, listElements,
-      indexOp, position, idConditional,
+      position, idConditional,
     } = this.state;
 
     // function that determines whether the keyword matches the data at the required position
@@ -124,10 +124,10 @@ class App extends Component {
     };
 
     // function that determines whether the data string starts with the keyword
-    const endsWith = (dataString, word) => {
-      const len = dataString.length - word.length;
-      include(dataString, word, len);
-    };
+    // const endsWith = (dataString, word) => {
+    //   const len = dataString.length - word.length;
+    //   include(dataString, word, len);
+    // };
 
     this.setState({ keywordButtonClicked: name });
     if (name === 'INCLUDES') { this.setState({ inputVisibility: 'visible' }); }
@@ -171,21 +171,9 @@ class App extends Component {
     }
   };
 
-  fromMenu = (operationClicked, indexButton) => {
-    console.log(`operation ${operationClicked} button ${indexButton}`);
-    this.setState({ menuVisible: false });
-    // switch (operationClicked) {
-    //   case 'NOT':
-    //     this.setState({ listOperations: listOperations.concat((data) => )})
-    //   case 'AND':
-    //   case 'OR':
-    //   case 'DELETE':
-    //   default:
-    // }
-  }
 
-  fromFormat = (top) => {
-    console.log('formatter top ' + top);
+  fromFormat = (top, left) => {
+    console.log('formatter top ' + top + ' ' + left);
   }
 
   render() {

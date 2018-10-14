@@ -3,7 +3,7 @@ import '../App.css';
 
 // basic button pressed to construct queries
 const ConditionButton = (props) => {
-  const { children, fromFormatter, id, fromConditional } = props;
+  const { children, id, fromConditional } = props;
   const buttonRef = React.createRef();
   const handler = () => {
     const top = buttonRef.current.offsetTop;
