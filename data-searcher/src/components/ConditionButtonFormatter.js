@@ -8,6 +8,13 @@ import '../App.css';
 
 // the area where queries are dislayed as they are constructed
 const ConditionButtonFormatter = (props) => {
+  const { fromFormatter } = props;
+  const formatterConditionButton = React.createRef();
+  const handler = () => {
+    const top = formatterConditionButton.current.offsetTop;
+    fromFormatter(top);
+    console.log('formatter clicked');
+  };
   // constructor(props) {
   //   super(props);
   //   this.state = {
@@ -46,7 +53,10 @@ const ConditionButtonFormatter = (props) => {
     // const propertiesMenu = { fromMenu: this.menuClickHandler };
     // const MenuElementWithHandler = ComponentEnhancer(MenuOption, propertiesMenu);
     return (
-      <div className='formatterClass'>
+      <div
+        className='formatterClass' ref={formatterConditionButton}
+        onClick={handler}
+      >
         {props.children}
         {/* {structure.map(el => <ConditionButton {...el} fromFormatter={this.conditionalClickHandler} />)}
         <DropDownMenu menuVisible={menuVisible}>

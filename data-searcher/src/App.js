@@ -18,6 +18,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.textInput = React.createRef();
+    this.formatterConditionButton = React.createRef();
     this.state = {
       listElements: [],
       listOperations: [],
@@ -45,6 +46,8 @@ class App extends Component {
   positionHandler = (e) => {
     this.setState({ position: e.target.value });
   }
+
+  menuHide = () => this.setState({ menuVisible: false });
 
   merger = (...arr) => {
     const { listElements, idConditional } = this.state;
@@ -77,8 +80,9 @@ class App extends Component {
     }
   }
 
-  conditionalClickHandler = (id) => {
-    console.log('conditional clicked in App ' + id);
+  conditionalClickHandler = (id, top, left) => {
+    console.log('conditional clicked in App button top ' + top + ' ' + left);
+    // console.log('formatter offset top' + this.formatterConditionButton.current.offsetTop);
     const { mergerArray } = this.state;
     this.setState({ menuVisible: true });
     if (mergerArray[1]) {
@@ -180,9 +184,9 @@ class App extends Component {
     // }
   }
 
-  // fromFormatter = (arr) => {
-
-  // }
+  fromFormat = (top) => {
+    console.log('formatter top ' + top);
+  }
 
   render() {
     const { inputVisibility, menuVisible, active, listElements } = this.state;
@@ -238,9 +242,9 @@ class App extends Component {
         </Keyboard>
         {/* includes the query structure */}
         <Keyboard typeContent={selectColumn} classProp=''>
-          <ConditionButtonFormatter>
+          <ConditionButtonFormatter fromFormatter={this.fromFormat}>
             {listElements.map(el => el)}
-            <DropDownMenu menuVisible={menuVisible}>
+            <DropDownMenu menuVisible={menuVisible} mouseOutMenu={this.menuHide}>
               <MenuElementWithHandler name='NOT' />
               <MenuElementWithHandler name='AND' />
               <MenuElementWithHandler name='OR' />

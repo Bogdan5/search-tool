@@ -3,13 +3,15 @@ import '../App.css';
 
 // this component includes a set of buttons
 const DropDownMenu = (props) => {
-  const { children, menuVisible } = props;
-  const mouseOut = (event) => {
-    
+  const { children, menuVisible, mouseOutMenu } = props;
+  const mouseOut = () => {
+    mouseOutMenu();
   };
   return (
-    <div className={`dropDownMenu ${menuVisible ? 'z-visible' : 'z-invisible'}`}
-    onMouseOut={mouseOut}>
+    <div
+      className={`dropDownMenu ${menuVisible ? 'z-visible' : 'z-invisible'}`}
+      onMouseOut={mouseOut} onBlur={mouseOut}
+    >
       {children}
     </div>
   );
