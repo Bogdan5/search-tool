@@ -22,6 +22,8 @@ class App extends Component {
     this.state = {
       listElements: [],
       listOperations: [],
+      historyElements: [],
+      historyOperations: [],
       keyword: '', // content of the keyword input text field
       inputVisibility: 'hidden', // in the second Keyboard, whether the position input is visible
       keywordButtonClicked: '', // name of button clicked in the keyword(2nd) Keyboard
@@ -48,6 +50,13 @@ class App extends Component {
   }
 
   menuHide = () => this.setState({ menuVisible: false });
+
+  updateHistory = () => {
+    this.setState({
+      historyElements: historyElements.concat(listElements),
+      historyOperations: historyOperations.concat(listOperations)
+    });
+  }
 
   merger = (...arr) => {
     const { listElements, idConditional } = this.state;
@@ -78,6 +87,7 @@ class App extends Component {
       const y = a.splice(searcher(arr[2]));
       this.setState({ listElements: a.concat(newElement(y, arr[1], x)) });
     }
+    this.updateHistory();
   }
 
   conditionalClickHandler = (id, top, left) => {
@@ -117,17 +127,17 @@ class App extends Component {
 
     // function that determines whether the keyword matches the data at the required position
     const include = (word, posit) => (data) => {
-      if (position || position > 0) {
+      if (position || position === 0) {
         return data.match(new RegExp(word)).index === posit;
       }
       return data.match(new RegExp(word));
     };
 
     // function that determines whether the data string starts with the keyword
-    // const endsWith = (dataString, word) => {
-    //   const len = dataString.length - word.length;
-    //   include(dataString, word, len);
-    // };
+    const endsWith = word => (data) => {
+      const len = data.length - word.length;
+      return include(word, len);
+    };
 
     this.setState({ keywordButtonClicked: name });
     if (name === 'INCLUDES') { this.setState({ inputVisibility: 'visible' }); }
@@ -137,16 +147,18 @@ class App extends Component {
     switch (name) {
       case 'SUBMIT':
         if (keywordButtonClicked && keyword) {
-          this.setState({ listOperations: listOperations.concat(include(keyword, position || 0)) });
           switch (keywordButtonClicked) {
             case 'INCLUDES':
               lst = ['Includes ', keyword, ' at position ', position];
+              this.setState({ listOperations: listOperations.concat(include(keyword, position)) });
               break;
             case 'ENDS WITH':
               lst = ['Ends with ', keyword];
+              this.setState({ listOperations: listOperations.concat(endsWith(keyword)) });
               break;
             default:
               lst = ['Starts with ', keyword];
+              this.setState({ listOperations: listOperations.concat(include(keyword, 0)) });
               break;
           }
           chldList = lst.map((el, index) => <span key={index}>{`${el}`}</span>);
@@ -159,8 +171,12 @@ class App extends Component {
           };
           const element = <ConditionButton {...propsArray} />;
           this.setState(
-            { listElements: listElements.concat(element), idConditional: idConditional + 1 }
+            {
+              listElements: listElements.concat(element),
+              idConditional: idConditional + 1,
+            },
           );
+          this.updateHistory();
         }
 
         break;
