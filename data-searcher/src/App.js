@@ -52,9 +52,10 @@ class App extends Component {
   menuHide = () => this.setState({ menuVisible: false });
 
   updateHistory = () => {
+    const { historyElements, historyOperations, listElements, listOperations } = this.state;
     this.setState({
       historyElements: historyElements.concat(listElements),
-      historyOperations: historyOperations.concat(listOperations)
+      historyOperations: historyOperations.concat(listOperations),
     });
   }
 
@@ -226,7 +227,10 @@ class App extends Component {
           <ButtonWithHandler name='OR' />
           <ButtonWithHandler name='NOT' />
         </Keyboard>
-        <Keyboard typeContent='Search keyword' classProp=' keyboardSearchKeyword'>
+        <Keyboard
+          typeContent='Search keyword' classProp=' keyboardSearchKeyword'
+          icon='+'
+        >
           <ButtonGroup>
             <ButtonWithHandler name='INCLUDES' />
             <ButtonWithHandler name='STARTS WITH' />
@@ -248,18 +252,18 @@ class App extends Component {
         <Keyboard typeContent={selectColumn} classProp=''>
           <ConditionButtonFormatter fromFormatter={this.fromFormat}>
             {listElements.map(el => el)}
-            <DropDownMenu menuVisible={menuVisible} mouseOutMenu={this.menuHide}>
-              <MenuElementWithHandler name='NOT' />
-              <MenuElementWithHandler name='AND' />
-              <MenuElementWithHandler name='OR' />
-              <MenuElementWithHandler name='DELETE' />
-            </DropDownMenu>
           </ConditionButtonFormatter>
         </Keyboard>
         {/* buttons for sorting the data */}
         <Sorter />
         {/* data displayed as resulted from search and sort operations */}
         <DataDisplay dataLoad={this.state} />
+        <DropDownMenu menuVisible={menuVisible} mouseOutMenu={this.menuHide}>
+          <MenuElementWithHandler name='NOT' />
+          <MenuElementWithHandler name='AND' />
+          <MenuElementWithHandler name='OR' />
+          <MenuElementWithHandler name='DELETE' />
+        </DropDownMenu>
       </div>
     );
   }

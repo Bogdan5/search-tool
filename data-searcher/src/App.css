@@ -3,7 +3,7 @@ body {
   background-color: white; }
 
 .App {
-  width: 75%;
+  width: 90%;
   margin: 0 auto;
   position: relative; }
 
@@ -44,12 +44,16 @@ body {
     .keyboardGeneric > div:first-child {
       width: 20%; }
     .keyboardGeneric > div:nth-child(2) {
-      width: 80%;
+      width: 75%;
       background-color: #ccb7b7;
       display: flex;
       flex-direction: row; }
       .keyboardGeneric > div:nth-child(2) > * {
         margin: 0 10px; }
+  .keyboardGeneric > section {
+    width: 5%;
+    font-weight: 800;
+    font-size: 20px; }
 
 .keyboardSearchKeyword input {
   height: 20px;

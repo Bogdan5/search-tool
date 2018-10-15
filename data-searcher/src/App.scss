@@ -23,7 +23,7 @@ body{
 }
 
 .App{
-  width: 75%;
+  width: 90%;
   margin: 0 auto;
   position: relative;
 }
@@ -67,13 +67,18 @@ body{
       width: 20%;
     }
     &:nth-child(2){
-      width: 80%;
+      width: 75%;
       background-color: rgb(204, 183, 183);
       @include row-flex;
       &>*{
         margin: 0 10px;
       }
     }
+  }
+  &>section{
+    width: 5%;
+    font-weight: 800;
+    font-size: 20px;
   }
 }
 
