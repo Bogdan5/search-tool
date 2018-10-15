@@ -229,7 +229,7 @@ class App extends Component {
         </Keyboard>
         <Keyboard
           typeContent='Search keyword' classProp=' keyboardSearchKeyword'
-          icon='+'
+          icon=''
         >
           <ButtonGroup>
             <ButtonWithHandler name='INCLUDES' />
@@ -249,7 +249,10 @@ class App extends Component {
           <ButtonWithHandler name='CANCEL' />
         </Keyboard>
         {/* includes the query structure */}
-        <Keyboard typeContent={selectColumn} classProp=''>
+        <Keyboard
+          typeContent={selectColumn} classProp=''
+          icon='+'
+        >
           <ConditionButtonFormatter fromFormatter={this.fromFormat}>
             {listElements.map(el => el)}
           </ConditionButtonFormatter>

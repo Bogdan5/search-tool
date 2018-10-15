@@ -17,6 +17,11 @@ $greyed-out: rgb(196, 188, 198);
   align-items: center;
 }
 
+@mixin center-both-ways{
+  @include vertical-center-flex;
+  justify-content: center;
+}
+
 body{
   font-family: Roboto Condensed, sans-serif;
   background-color: white;
@@ -77,8 +82,7 @@ body{
   }
   &>section{
     width: 5%;
-    font-weight: 800;
-    font-size: 20px;
+    @include center-both-ways;
   }
 }
 
@@ -89,7 +93,20 @@ body{
     border:1px solid $dark-purple;
     border-radius: 2px;
   }
-  
+}
+
+.icon{
+  width: 25px;
+  height: 25px;
+  border: 2px solid rgb(30, 3, 34);
+  border-radius: 50%;
+  @include center-both-ways;
+  font-weight: 800;
+  font-size: 30px;
+  cursor: pointer;
+  &:hover, &:active{
+    background-color: grey;
+  }
 }
 
 .buttonGroup{

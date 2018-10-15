@@ -11,7 +11,7 @@ const Keyboard = (props) => {
     <div className={`keyboardGeneric${classProp}`}>
       <div>{typeContent}</div>
       <div>{children}</div>
-      <section className='icon'><div>{icon}</div></section>
+      <section><div className={icon ? 'icon' : ''}>{icon}</div></section>
     </div>
   );
 };

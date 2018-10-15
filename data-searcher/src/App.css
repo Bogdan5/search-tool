@@ -52,14 +52,29 @@ body {
         margin: 0 10px; }
   .keyboardGeneric > section {
     width: 5%;
-    font-weight: 800;
-    font-size: 20px; }
+    display: flex;
+    align-items: center;
+    justify-content: center; }
 
 .keyboardSearchKeyword input {
   height: 20px;
   background-color: #e5b6ee;
   border: 1px solid #410b40;
   border-radius: 2px; }
+
+.icon {
+  width: 25px;
+  height: 25px;
+  border: 2px solid #1e0322;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 30px;
+  cursor: pointer; }
+  .icon:hover, .icon:active {
+    background-color: grey; }
 
 .buttonGroup > button {
   min-width: 120px;
