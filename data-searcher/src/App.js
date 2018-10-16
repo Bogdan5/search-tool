@@ -20,6 +20,13 @@ class App extends Component {
     this.textInput = React.createRef();
     this.formatterConditionButton = React.createRef();
     this.state = {
+      listCards: [{
+        id: 0,
+        field: 'all',
+        listElements: [],
+        listOperations: [],
+      }],
+      cardSelected: 0,
       listElements: [],
       listOperations: [],
       historyElements: [],
@@ -123,7 +130,7 @@ class App extends Component {
   fromButton = (name) => {
     const {
       listOperations, keyword, keywordButtonClicked, listElements,
-      position, idConditional,
+      position, idConditional, cardSelected,
     } = this.state;
 
     // function that determines whether the keyword matches the data at the required position
@@ -188,7 +195,7 @@ class App extends Component {
     }
   };
 
-
+  // data from the ConditionalButtonFormatter - gives position of this component
   fromFormat = (top, left) => {
     console.log('formatter top ' + top + ' ' + left);
   }
@@ -203,10 +210,10 @@ class App extends Component {
       keywordButtonClicked: this.state, // what element button is clicked
     };
     const ButtonWithHandler = ComponentEnhancer(DumbButton, propertiesObj);
-
+    // adds a click handler to all components of the DropDownMenu
     const propertiesMenu = { fromMenu: this.menuClickHandler };
     const MenuElementWithHandler = ComponentEnhancer(MenuOption, propertiesMenu);
-
+    // drop down selector in each card that gives the field for each condition apply
     const selectColumn = (
       <select className='selector'>
         <option value='colAll'>Selects fields</option>
@@ -241,7 +248,7 @@ class App extends Component {
             placeholder='Type keyword' ref={this.textInput}
           />
           <div className={inputVisibility}>in position</div>
-          <input // the position; 0 by default
+          <input // by default, any match would satisfy condition, regardless of position
             type='text' className={`positionInput ${inputVisibility}`}
             onChange={this.positionHandler}
           />
