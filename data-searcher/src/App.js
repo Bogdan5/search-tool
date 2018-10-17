@@ -256,14 +256,19 @@ class App extends Component {
           <ButtonWithHandler name='CANCEL' />
         </Keyboard>
         {/* includes the query structure */}
-        <Keyboard
-          typeContent={selectColumn} classProp=''
-          icon='+'
-        >
-          <ConditionButtonFormatter fromFormatter={this.fromFormat}>
-            {listElements.map(el => el)}
-          </ConditionButtonFormatter>
-        </Keyboard>
+        {this.list.map((el) => {
+          return (
+            <Keyboard
+              typeContent={selectColumn} classProp=''
+              icon='+'
+            >
+              <ConditionButtonFormatter fromFormatter={this.fromFormat}>
+                {listElements.map(el => el)}
+              </ConditionButtonFormatter>
+            </Keyboard>
+          );
+        })}
+        
         {/* buttons for sorting the data */}
         <Sorter />
         {/* data displayed as resulted from search and sort operations */}
