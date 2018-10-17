@@ -223,6 +223,12 @@ class App extends Component {
         <option value='col3'>Column 3</option>
       </select>
     );
+    const typeContent = (
+      <div>
+        <button type='submit'>Select</button>
+        {selectColumn}
+      </div>
+    );
 
     //
     return (
@@ -256,14 +262,15 @@ class App extends Component {
           <ButtonWithHandler name='CANCEL' />
         </Keyboard>
         {/* includes the query structure */}
-        {this.list.map((el) => {
+        {this.list.map((el, index) => {
+          const iconsArray = (this.list.length === index) ? ['+', '-'] : ['-'];
           return (
             <Keyboard
-              typeContent={selectColumn} classProp=''
-              icon='+'
+              key={el.id} leftSection={typeContent}
+              classProp='' icons={iconsArray}
             >
               <ConditionButtonFormatter fromFormatter={this.fromFormat}>
-                {listElements.map(el => el)}
+                {listElements.map(elem => elem.listElements)}
               </ConditionButtonFormatter>
             </Keyboard>
           );
