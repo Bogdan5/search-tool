@@ -58,6 +58,14 @@ class App extends Component {
 
   menuHide = () => this.setState({ menuVisible: false });
 
+  searchObject = (obj, searchPropName, searchProp, targetProp) => {
+    let result = null;
+    Object.keys(obj).forEach((el) => {
+      if (el[searchPropName] === searchProp) { result = obj[targetProp]; }
+    });
+    return result;
+  }
+
   updateHistory = () => {
     const { historyElements, historyOperations, listElements, listOperations } = this.state;
     this.setState({
@@ -213,7 +221,7 @@ class App extends Component {
   }
 
   render() {
-    const { inputVisibility, menuVisible, active, listElements } = this.state;
+    const { inputVisibility, menuVisible, active, listCards } = this.state;
     // enhancing DumbButtons to ButtonWithHandler through ComponentEnhancer
     const propertiesObj = { // properties object passed to ComponentEnhancer
       fromButton: this.fromButton, // a handler is added to buttons in order to pass data
@@ -274,8 +282,8 @@ class App extends Component {
           <ButtonWithHandler name='CANCEL' />
         </Keyboard>
         {/* includes the query structure */}
-        {this.list.map((el, index) => {
-          const iconsArray = (this.list.length === index) ? ['+', '-'] : ['-'];
+        {listCards.map((el, index) => {
+          const iconsArray = (listCards.length === index + 1) ? ['+', '-'] : ['-'];
           const iconsElements = (
             <div>
               {iconsArray.map(item => <Icon type={item} fromIcon={this.iconClicked} />)}
@@ -287,7 +295,7 @@ class App extends Component {
               classProp='' rightSection={iconsElements}
             >
               <ConditionButtonFormatter fromFormatter={this.fromFormat}>
-                {listElements.map(elem => elem.listElements)}
+                {el.listElements.map(elem => elem)}
               </ConditionButtonFormatter>
             </Keyboard>
           );
