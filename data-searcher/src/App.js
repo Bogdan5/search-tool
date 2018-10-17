@@ -75,7 +75,7 @@ class App extends Component {
   }
 
   merger = (...arr) => {
-    const { listElements, idConditional } = this.state;
+    const { listCards, idConditional, cardSelected } = this.state;
     const newElement = (element1, name, element2) => {
       const newProps = { ...element2.props };
       newProps.id = idConditional + 1;
@@ -94,14 +94,14 @@ class App extends Component {
       }
       return -1;
     };
-    const a = [...listElements];
-    const x = a.splice(searcher(arr[0]), 1);
+    const copy = [...listCards[cardSelected].listElements];
+    const x = copy.splice(searcher(arr[0]), 1);
     if (arr.length === 2 && arr[1] === 'NOT') {
       console.log('x props' + JSON.stringify(x));
-      this.setState({ listElements: a.concat(newElement(null, arr[1], x)) });
+      this.setState({ listElements: copy.concat(newElement(null, arr[1], x)) });
     } else if (arr.length === 3) {
-      const y = a.splice(searcher(arr[2]));
-      this.setState({ listElements: a.concat(newElement(y, arr[1], x)) });
+      const y = copy.splice(searcher(arr[2]));
+      this.setState({ listElements: copy.concat(newElement(y, arr[1], x)) });
     }
     this.updateHistory();
   }
@@ -138,7 +138,7 @@ class App extends Component {
   fromButton = (name) => {
     const {
       listOperations, keyword, keywordButtonClicked, listElements,
-      position, idConditional, cardSelected,
+      position, idConditional, cardSelected, listCards,
     } = this.state;
 
     // function that determines whether the keyword matches the data at the required position
@@ -185,10 +185,13 @@ class App extends Component {
             fromConditional: this.conditionalClickHandler,
             id: idConditional,
           };
-          const element = <ConditionButton {...propsArray} />;
+          const newElem = <ConditionButton {...propsArray} />;
+          const copyList = [...listCards];
+          copyList[cardSelected].listElements = listCards[cardSelected].listElements
+            .concat(newElem);
           this.setState(
             {
-              listElements: listElements.concat(element),
+              listElements: copyList,
               idConditional: idConditional + 1,
             },
           );
