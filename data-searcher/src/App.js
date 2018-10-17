@@ -200,6 +200,14 @@ class App extends Component {
     console.log('formatter top ' + top + ' ' + left);
   }
 
+  iconClicked = (type) => {
+    const { listCards } = this.state;
+    const list = [...listCards];
+    if (type === '+') {
+      
+    }
+  }
+
   render() {
     const { inputVisibility, menuVisible, active, listElements } = this.state;
     // enhancing DumbButtons to ButtonWithHandler through ComponentEnhancer
@@ -264,6 +272,11 @@ class App extends Component {
         {/* includes the query structure */}
         {this.list.map((el, index) => {
           const iconsArray = (this.list.length === index) ? ['+', '-'] : ['-'];
+          const iconsElements = (
+            <div>
+              {iconsArray.map(el => <Icon type={el} fromIcon={this.iconClicked} />)}
+            </div>
+          );
           return (
             <Keyboard
               key={el.id} leftSection={typeContent}
