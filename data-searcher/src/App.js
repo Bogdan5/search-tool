@@ -10,7 +10,7 @@ import ConditionButtonFormatter from './components/ConditionButtonFormatter';
 import ConditionButton from './components/ConditionButton';
 import DropDownMenu from './components/DropDownMenu';
 import MenuOption from './components/MenuOption';
-
+import Icon from './components/Icon';
 
 import './App.css';
 
@@ -204,7 +204,11 @@ class App extends Component {
     const { listCards } = this.state;
     const list = [...listCards];
     if (type === '+') {
-      
+      this.setState({ listCards: listCards.concat({
+        id: listCards.length + 1,
+        listElements: [],
+        listOperations: []
+      })})
     }
   }
 
@@ -274,13 +278,13 @@ class App extends Component {
           const iconsArray = (this.list.length === index) ? ['+', '-'] : ['-'];
           const iconsElements = (
             <div>
-              {iconsArray.map(el => <Icon type={el} fromIcon={this.iconClicked} />)}
+              {iconsArray.map(item => <Icon type={item} fromIcon={this.iconClicked} />)}
             </div>
           );
           return (
             <Keyboard
               key={el.id} leftSection={typeContent}
-              classProp='' icons={iconsArray}
+              classProp='' rightSection={iconsElements}
             >
               <ConditionButtonFormatter fromFormatter={this.fromFormat}>
                 {listElements.map(elem => elem.listElements)}

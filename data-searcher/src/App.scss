@@ -18,8 +18,10 @@ $greyed-out: rgb(196, 188, 198);
 }
 
 @mixin center-both-ways{
-  @include vertical-center-flex;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 body{
