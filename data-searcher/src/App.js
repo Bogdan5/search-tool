@@ -66,13 +66,13 @@ class App extends Component {
     return result;
   }
 
-  updateHistory = () => {
-    const { historyElements, historyOperations, listElements, listOperations } = this.state;
-    this.setState({
-      historyElements: historyElements.concat(listElements),
-      historyOperations: historyOperations.concat(listOperations),
-    });
-  }
+  // updateHistory = () => {
+  //   const { historyElements, historyOperations, listElements, listOperations } = this.state;
+  //   this.setState({
+  //     historyElements: historyElements.concat(listElements),
+  //     historyOperations: historyOperations.concat(listOperations),
+  //   });
+  // }
 
   merger = (...arr) => {
     const { listCards, idConditional, cardSelected } = this.state;
@@ -89,21 +89,23 @@ class App extends Component {
       );
     };
     const searcher = (id) => {
-      for (let i; i < listElements.length; i++) {
-        if (listElements[i] === id) { return i; }
+      for (let i; i < listCards[cardSelected].listElements.length; i++) {
+        if (listCards[cardSelected].listElements[i] === id) { return i; }
       }
       return -1;
     };
     const copy = [...listCards[cardSelected].listElements];
+    const copyList = [...listCards];
     const x = copy.splice(searcher(arr[0]), 1);
     if (arr.length === 2 && arr[1] === 'NOT') {
       console.log('x props' + JSON.stringify(x));
-      this.setState({ listElements: copy.concat(newElement(null, arr[1], x)) });
+      copyList[cardSelected].listElements = copy.concat(newElement(null, arr[1], x));
     } else if (arr.length === 3) {
       const y = copy.splice(searcher(arr[2]));
-      this.setState({ listElements: copy.concat(newElement(y, arr[1], x)) });
+      copyList[cardSelected].listElements = copy.concat(newElement(y, arr[1], x));
     }
-    this.updateHistory();
+    this.setState({ listCards: copyList });
+    // this.updateHistory();
   }
 
   conditionalClickHandler = (id, top, left) => {
@@ -191,11 +193,11 @@ class App extends Component {
             .concat(newElem);
           this.setState(
             {
-              listElements: copyList,
+              listCards: copyList,
               idConditional: idConditional + 1,
             },
           );
-          this.updateHistory();
+          // this.updateHistory();
         }
 
         break;
@@ -213,13 +215,14 @@ class App extends Component {
 
   iconClicked = (type) => {
     const { listCards } = this.state;
-    const list = [...listCards];
     if (type === '+') {
-      this.setState({ listCards: listCards.concat({
-        id: listCards.length + 1,
-        listElements: [],
-        listOperations: []
-      })})
+      this.setState({
+        listCards: listCards.concat({
+          id: listCards.length + 1,
+          listElements: [],
+          listOperations: [],
+        }),
+      });
     }
   }
 
