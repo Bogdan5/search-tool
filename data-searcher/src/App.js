@@ -213,16 +213,21 @@ class App extends Component {
     console.log('formatter top ' + top + ' ' + left);
   }
 
-  iconClicked = (type) => {
+  iconClicked = (type, keyboardNo) => {
     const { listCards } = this.state;
     if (type === '+') {
       this.setState({
         listCards: listCards.concat({
-          id: listCards.length + 1,
+          id: listCards.length,
           listElements: [],
           listOperations: [],
         }),
       });
+    } else if (type === '-') {
+      console.log('deleted card ' + keyboardNo);
+      const copy = [...listCards];
+      copy.splice(keyboardNo, 1);
+      this.setState({ listCards: copy });
     }
   }
 
@@ -292,7 +297,12 @@ class App extends Component {
           const iconsArray = (listCards.length === index + 1) ? ['+', '-'] : ['-'];
           const iconsElements = (
             <div>
-              {iconsArray.map(item => <Icon type={item} fromIcon={this.iconClicked} />)}
+              {iconsArray.map(item => (
+                <Icon
+                  type={item} fromIcon={this.iconClicked}
+                  keyboardNo={el.id}
+                />
+              ))}
             </div>
           );
           return (
