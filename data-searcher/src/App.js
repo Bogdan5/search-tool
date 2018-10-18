@@ -117,7 +117,7 @@ class App extends Component {
     console.log('app offsets' + appTop + ' ' + appLeft);
     this.setState({
       menuVisible: true,
-      menuTop: clickTop - appTop - 53,
+      menuTop: clickTop - appTop - 10,
       menuLeft: clickLeft - appLeft - 15,
     });
     if (mergerArray[1]) {

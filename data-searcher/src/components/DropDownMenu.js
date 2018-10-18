@@ -10,7 +10,7 @@ const DropDownMenu = (props) => {
   return (
     <div
       className={`dropDownMenu ${menuVisible ? 'z-visible' : 'z-invisible'}`}
-      onMouseOut={mouseOut} onBlur={mouseOut}
+      onMouseLeave={mouseOut} onBlur={mouseOut}
       style={style}
     >
       {children}

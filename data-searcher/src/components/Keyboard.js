@@ -9,7 +9,7 @@ const Keyboard = (props) => {
   const { children } = props;
   return (
     <div className={`keyboardGeneric${classProp}`}>
-      <div>{leftSection}</div>
+      <div className='leftSection'>{leftSection}</div>
       <div>{children}</div>
       <section>{rightSection}</section>
     </div>

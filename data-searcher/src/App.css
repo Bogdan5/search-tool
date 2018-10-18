@@ -58,6 +58,13 @@ body {
     justify-content: center;
     align-items: center; }
 
+.leftSection > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid green; }
+
 .keyboardSearchKeyword input {
   height: 20px;
   background-color: #e5b6ee;
@@ -99,11 +106,13 @@ body {
 .dropDownMenu {
   position: absolute;
   transition: height 600ms ease-in-out;
-  height: 120px;
+  min-height: 120px;
   width: 200px;
   background-color: silver;
   color: #100211;
   display: none; }
+  .dropDownMenu:hover {
+    border: 2px solid red; }
 
 .menuOption {
   transition: height 0 ease-in-out;

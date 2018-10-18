@@ -6,8 +6,8 @@ const ConditionButton = (props) => {
   const { children, id, fromConditional } = props;
   const buttonRef = React.createRef();
   const handler = (event) => {
-    const top = event.pageX;
-    const left = event.pageY;
+    const top = event.pageY;
+    const left = event.pageX;
     fromConditional(id, top, left);
   };
   return (
