@@ -18,7 +18,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.textInput = React.createRef();
-    this.formatterConditionButton = React.createRef();
+    this.appRef = React.createRef();
     this.state = {
       listCards: [{
         id: 0,
@@ -108,11 +108,18 @@ class App extends Component {
     // this.updateHistory();
   }
 
-  conditionalClickHandler = (id, top, left) => {
-    console.log('conditional clicked in App button top ' + top + ' ' + left);
+  conditionalClickHandler = (id, clickTop, clickLeft) => {
+    console.log('conditional clicked in App button' + clickTop + ' ' + clickLeft);
     // console.log('formatter offset top' + this.formatterConditionButton.current.offsetTop);
     const { mergerArray } = this.state;
-    this.setState({ menuVisible: true });
+    const appTop = this.appRef.current.offsetTop;
+    const appLeft = this.appRef.current.offsetLeft;
+    console.log('app offsets' + appTop + ' ' + appLeft);
+    this.setState({
+      menuVisible: true,
+      menuTop: clickTop - appTop - 53,
+      menuLeft: clickLeft - appLeft - 15,
+    });
     if (mergerArray[1]) {
       this.merger(mergerArray[0], mergerArray[1], id);
       this.setState({ mergerArray: [null, null, null] });
@@ -223,7 +230,7 @@ class App extends Component {
           listOperations: [],
         }),
       });
-    } else if (type === '-') {
+    } else if (type === '-' && listCards.length > 1) {
       console.log('deleted card ' + keyboardNo);
       const copy = [...listCards];
       copy.splice(keyboardNo, 1);
@@ -232,7 +239,7 @@ class App extends Component {
   }
 
   render() {
-    const { inputVisibility, menuVisible, active, listCards } = this.state;
+    const { inputVisibility, menuVisible, active, listCards, menuTop, menuLeft } = this.state;
     // enhancing DumbButtons to ButtonWithHandler through ComponentEnhancer
     const propertiesObj = { // properties object passed to ComponentEnhancer
       fromButton: this.fromButton, // a handler is added to buttons in order to pass data
@@ -263,16 +270,16 @@ class App extends Component {
 
     //
     return (
-      <div className='App'>
+      <div className='App' ref={this.appRef}>
         <Header title='Data display - Search and sort' />
         { /* includes description and operator buttons */ }
-        <Keyboard typeContent='Boolean operators' classProp=''>
+        <Keyboard leftSection='Boolean operators' classProp=''>
           <ButtonWithHandler name='AND' />
           <ButtonWithHandler name='OR' />
           <ButtonWithHandler name='NOT' />
         </Keyboard>
         <Keyboard
-          typeContent='Search keyword' classProp=' keyboardSearchKeyword'
+          leftSection='Search keyword' classProp=' keyboardSearchKeyword'
           icon=''
         >
           <ButtonGroup>
@@ -316,12 +323,14 @@ class App extends Component {
             </Keyboard>
           );
         })}
-        
         {/* buttons for sorting the data */}
         <Sorter />
         {/* data displayed as resulted from search and sort operations */}
         <DataDisplay dataLoad={this.state} />
-        <DropDownMenu menuVisible={menuVisible} mouseOutMenu={this.menuHide}>
+        <DropDownMenu
+          menuVisible={menuVisible} mouseOutMenu={this.menuHide}
+          style={{ top: menuTop, left: menuLeft }}
+        >
           <MenuElementWithHandler name='NOT' />
           <MenuElementWithHandler name='AND' />
           <MenuElementWithHandler name='OR' />

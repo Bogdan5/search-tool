@@ -3,7 +3,7 @@ import '../App.css';
 
 // this component includes a set of buttons
 const DropDownMenu = (props) => {
-  const { children, menuVisible, mouseOutMenu } = props;
+  const { children, menuVisible, mouseOutMenu, style } = props;
   const mouseOut = () => {
     mouseOutMenu();
   };
@@ -11,6 +11,7 @@ const DropDownMenu = (props) => {
     <div
       className={`dropDownMenu ${menuVisible ? 'z-visible' : 'z-invisible'}`}
       onMouseOut={mouseOut} onBlur={mouseOut}
+      style={style}
     >
       {children}
     </div>

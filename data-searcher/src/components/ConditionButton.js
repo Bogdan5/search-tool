@@ -5,9 +5,9 @@ import '../App.css';
 const ConditionButton = (props) => {
   const { children, id, fromConditional } = props;
   const buttonRef = React.createRef();
-  const handler = () => {
-    const top = buttonRef.current.offsetTop;
-    const left = buttonRef.current.offsetLeft;
+  const handler = (event) => {
+    const top = event.pageX;
+    const left = event.pageY;
     fromConditional(id, top, left);
   };
   return (
