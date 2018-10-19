@@ -89,9 +89,12 @@ body{
   }
 }
 
-.leftSection>div{
+.leftSection{
   @include center-both-ways();
-  border: 1px solid green;
+  &>div{
+    @include center-both-ways();
+    border: 1px solid green;
+  }
 }
 
 .keyboardSearchKeyword{

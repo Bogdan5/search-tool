@@ -58,12 +58,17 @@ body {
     justify-content: center;
     align-items: center; }
 
-.leftSection > div {
+.leftSection {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  border: 1px solid green; }
+  align-items: center; }
+  .leftSection > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid green; }
 
 .keyboardSearchKeyword input {
   height: 20px;

@@ -58,6 +58,8 @@ class App extends Component {
 
   menuHide = () => this.setState({ menuVisible: false });
 
+  selectCard = (id)
+
   searchObject = (obj, searchPropName, searchProp, targetProp) => {
     let result = null;
     Object.keys(obj).forEach((el) => {
@@ -261,12 +263,6 @@ class App extends Component {
         <option value='col3'>Column 3</option>
       </select>
     );
-    const typeContent = (
-      <div>
-        <button type='submit'>Select</button>
-        {selectColumn}
-      </div>
-    );
 
     //
     return (
@@ -310,6 +306,13 @@ class App extends Component {
                   keyboardNo={el.id}
                 />
               ))}
+            </div>
+          );
+          const typeContent = (
+            <div>
+              <SelectButton type='submit' fromSelect={this.selectCard}>Select</SelectButton>
+              <br />
+              {selectColumn}
             </div>
           );
           return (
