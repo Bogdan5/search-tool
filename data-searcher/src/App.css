@@ -46,7 +46,6 @@ body {
       width: 20%; }
     .keyboardGeneric > div:nth-child(2) {
       width: 75%;
-      background-color: #ccb7b7;
       display: flex;
       flex-direction: row; }
       .keyboardGeneric > div:nth-child(2) > * {
@@ -58,6 +57,9 @@ body {
     justify-content: center;
     align-items: center; }
 
+.selectedKeyboard {
+  background-color: rgba(182, 181, 181, 0.671); }
+
 .leftSection {
   display: flex;
   flex-direction: column;
@@ -67,8 +69,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    border: 1px solid green; }
+    align-items: center; }
 
 .keyboardSearchKeyword input {
   height: 20px;

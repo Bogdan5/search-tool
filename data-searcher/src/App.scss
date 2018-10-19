@@ -33,7 +33,6 @@ body{
   width: 90%;
   margin: 0 auto;
   position: relative;
-  border: 1px solid black;
 }
 
 .dumbButtonClass{
@@ -76,7 +75,6 @@ body{
     }
     &:nth-child(2){
       width: 75%;
-      background-color: rgb(204, 183, 183);
       @include row-flex;
       &>*{
         margin: 0 10px;
@@ -89,11 +87,14 @@ body{
   }
 }
 
+.selectedKeyboard{
+  background-color: rgba(182, 181, 181, 0.671);
+}
+
 .leftSection{
   @include center-both-ways();
   &>div{
     @include center-both-ways();
-    border: 1px solid green;
   }
 }
 

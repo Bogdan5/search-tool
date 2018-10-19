@@ -8,18 +8,18 @@ import '../App.css';
 
 // the area where queries are dislayed as they are constructed
 const ConditionButtonFormatter = (props) => {
-  const { fromFormatter, children } = props;
+  const { children } = props;
   const formatterConditionButton = React.createRef();
-  const handler = () => {
-    const top = formatterConditionButton.current.offsetTop;
-    const left = formatterConditionButton.current.offsetLeft;
-    fromFormatter(top, left);
-    console.log('formatter clicked');
-  };
+  // const handler = () => {
+  //   const top = formatterConditionButton.current.offsetTop;
+  //   const left = formatterConditionButton.current.offsetLeft;
+  //   fromFormatter(top, left);
+  //   console.log('formatter clicked');
+  // };
   return (
     <div
       className='formatterClass' ref={formatterConditionButton}
-      onClick={handler} role='presentation'
+      role='presentation'
     >
       {children}
     </div>

@@ -11,6 +11,7 @@ import ConditionButton from './components/ConditionButton';
 import DropDownMenu from './components/DropDownMenu';
 import MenuOption from './components/MenuOption';
 import Icon from './components/Icon';
+import SelectButton from './components/SelectButton';
 
 import './App.css';
 
@@ -27,20 +28,14 @@ class App extends Component {
         listOperations: [],
       }],
       cardSelected: 0,
-      listElements: [],
-      listOperations: [],
-      historyElements: [],
-      historyOperations: [],
       keyword: '', // content of the keyword input text field
       inputVisibility: 'hidden', // in the second Keyboard, whether the position input is visible
       keywordButtonClicked: '', // name of button clicked in the keyword(2nd) Keyboard
       active: [], // array of buttons active
-      indexOp: 0, // how many elements have been added in an operation
       position: 0,
       idConditional: 0,
       menuVisible: false,
       mergerArray: [null, null, null],
-      idConditionalButtonClicked: null,
     };
   }
 
@@ -58,7 +53,10 @@ class App extends Component {
 
   menuHide = () => this.setState({ menuVisible: false });
 
-  selectCard = (id)
+  selectCard = (card) => {
+    // console.log('card selected' + card);
+    this.setState({ cardSelected: card });
+  }
 
   searchObject = (obj, searchPropName, searchProp, targetProp) => {
     let result = null;
@@ -100,7 +98,7 @@ class App extends Component {
     const copyList = [...listCards];
     const x = copy.splice(searcher(arr[0]), 1);
     if (arr.length === 2 && arr[1] === 'NOT') {
-      console.log('x props' + JSON.stringify(x));
+      // console.log('x props' + JSON.stringify(x));
       copyList[cardSelected].listElements = copy.concat(newElement(null, arr[1], x));
     } else if (arr.length === 3) {
       const y = copy.splice(searcher(arr[2]));
@@ -111,12 +109,12 @@ class App extends Component {
   }
 
   conditionalClickHandler = (id, clickTop, clickLeft) => {
-    console.log('conditional clicked in App button' + clickTop + ' ' + clickLeft);
+    // console.log('conditional clicked in App button' + clickTop + ' ' + clickLeft);
     // console.log('formatter offset top' + this.formatterConditionButton.current.offsetTop);
     const { mergerArray } = this.state;
     const appTop = this.appRef.current.offsetTop;
     const appLeft = this.appRef.current.offsetLeft;
-    console.log('app offsets' + appTop + ' ' + appLeft);
+    // console.log('app offsets' + appTop + ' ' + appLeft);
     this.setState({
       menuVisible: true,
       menuTop: clickTop - appTop - 10,
@@ -136,7 +134,7 @@ class App extends Component {
     if (mergerArray[0] !== null) {
       const mer = [...mergerArray];
       mer[1] = name;
-      console.log('mergerArray ' + this.state.mergerArray);
+      // console.log('mergerArray ' + this.state.mergerArray);
       if (name === 'NOT') {
         this.merger(mergerArray[0], 'NOT');
       } else {
@@ -148,7 +146,7 @@ class App extends Component {
   // function that passes data from DumbButton
   fromButton = (name) => {
     const {
-      listOperations, keyword, keywordButtonClicked, listElements,
+      listOperations, keyword, keywordButtonClicked,
       position, idConditional, cardSelected, listCards,
     } = this.state;
 
@@ -217,11 +215,6 @@ class App extends Component {
     }
   };
 
-  // data from the ConditionalButtonFormatter - gives position of this component
-  fromFormat = (top, left) => {
-    console.log('formatter top ' + top + ' ' + left);
-  }
-
   iconClicked = (type, keyboardNo) => {
     const { listCards } = this.state;
     if (type === '+') {
@@ -233,7 +226,7 @@ class App extends Component {
         }),
       });
     } else if (type === '-' && listCards.length > 1) {
-      console.log('deleted card ' + keyboardNo);
+      // console.log('deleted card ' + keyboardNo);
       const copy = [...listCards];
       copy.splice(keyboardNo, 1);
       this.setState({ listCards: copy });
@@ -241,7 +234,10 @@ class App extends Component {
   }
 
   render() {
-    const { inputVisibility, menuVisible, active, listCards, menuTop, menuLeft } = this.state;
+    const {
+      inputVisibility, menuVisible, active, listCards,
+      menuTop, menuLeft, cardSelected,
+    } = this.state;
     // enhancing DumbButtons to ButtonWithHandler through ComponentEnhancer
     const propertiesObj = { // properties object passed to ComponentEnhancer
       fromButton: this.fromButton, // a handler is added to buttons in order to pass data
@@ -298,19 +294,20 @@ class App extends Component {
         {/* includes the query structure */}
         {listCards.map((el, index) => {
           const iconsArray = (listCards.length === index + 1) ? ['+', '-'] : ['-'];
+          const ident = `${el.id}-${index}`;
           const iconsElements = (
             <div>
               {iconsArray.map(item => (
                 <Icon
                   type={item} fromIcon={this.iconClicked}
-                  keyboardNo={el.id}
+                  keyboardNo={el.id} key={ident}
                 />
               ))}
             </div>
           );
           const typeContent = (
             <div>
-              <SelectButton type='submit' fromSelect={this.selectCard}>Select</SelectButton>
+              <SelectButton card={el.id} fromSelect={this.selectCard}>Select</SelectButton>
               <br />
               {selectColumn}
             </div>
@@ -319,6 +316,7 @@ class App extends Component {
             <Keyboard
               key={el.id} leftSection={typeContent}
               classProp='' rightSection={iconsElements}
+              cardSelected={cardSelected} id={el.id}
             >
               <ConditionButtonFormatter fromFormatter={this.fromFormat}>
                 {el.listElements.map(elem => elem)}
