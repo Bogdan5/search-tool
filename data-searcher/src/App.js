@@ -115,16 +115,18 @@ class App extends Component {
     const appTop = this.appRef.current.offsetTop;
     const appLeft = this.appRef.current.offsetLeft;
     // console.log('app offsets' + appTop + ' ' + appLeft);
-    this.setState({
-      menuVisible: true,
-      menuTop: clickTop - appTop - 10,
-      menuLeft: clickLeft - appLeft - 15,
-    });
-    if (mergerArray[1]) {
+    if (mergerArray[0] === null) {
+      this.setState({
+        mergerArray: [id, null, null],
+        menuVisible: true,
+        menuTop: clickTop - appTop - 10,
+        menuLeft: clickLeft - appLeft - 15,
+      });
+    } else if (mergerArray[1] === null && mergerArray[0] !== id) {
+      this.setState({ mergerArray: [id, null, null] });
+    } else if (mergerArray[1] !== null && mergerArray[0] !== id) {
       this.merger(mergerArray[0], mergerArray[1], id);
       this.setState({ mergerArray: [null, null, null] });
-    } else {
-      this.setState({ mergerArray: [id, null, null] });
     }
   };
 
@@ -146,9 +148,10 @@ class App extends Component {
   // function that passes data from DumbButton
   fromButton = (name) => {
     const {
-      listOperations, keyword, keywordButtonClicked,
-      position, idConditional, cardSelected, listCards,
+      keyword, keywordButtonClicked, cardSelected,
+      position, idConditional, listCards,
     } = this.state;
+    const { listOperations } = listCards[cardSelected];
 
     // function that determines whether the keyword matches the data at the required position
     const include = (word, posit) => (data) => {
@@ -169,23 +172,26 @@ class App extends Component {
     // const len = currentOperation.length;
     let chldList = [];
     let lst = [];
+    const listCopy = [...listCards];
     switch (name) {
       case 'SUBMIT':
         if (keywordButtonClicked && keyword) {
           switch (keywordButtonClicked) {
             case 'INCLUDES':
               lst = ['Includes ', keyword, ' at position ', position];
-              this.setState({ listOperations: listOperations.concat(include(keyword, position)) });
+              listCopy[cardSelected].listOperations.push(include(keyword, position));
               break;
             case 'ENDS WITH':
               lst = ['Ends with ', keyword];
-              this.setState({ listOperations: listOperations.concat(endsWith(keyword)) });
+              listCopy[cardSelected].listOperations.push(endsWith(keyword));
+              break;
+            case 'STARTS WITH':
+              lst = ['Starts with ', keyword];
+              listCopy[cardSelected].listOperations.push(include(keyword));
               break;
             default:
-              lst = ['Starts with ', keyword];
-              this.setState({ listOperations: listOperations.concat(include(keyword, 0)) });
-              break;
           }
+          this.setState({ listCards: listCopy });
           chldList = lst.map((el, index) => <span key={index}>{`${el}`}</span>);
           this.setState({ idConditional: idConditional + 1 });
           const propsArray = {
@@ -294,15 +300,17 @@ class App extends Component {
         {/* includes the query structure */}
         {listCards.map((el, index) => {
           const iconsArray = (listCards.length === index + 1) ? ['+', '-'] : ['-'];
-          const ident = `${el.id}-${index}`;
           const iconsElements = (
             <div>
-              {iconsArray.map(item => (
-                <Icon
-                  type={item} fromIcon={this.iconClicked}
-                  keyboardNo={el.id} key={ident}
-                />
-              ))}
+              {iconsArray.map((item, ind) => {
+                const ident = `${el.id}-${ind}`;
+                return (
+                  <Icon
+                    type={item} fromIcon={this.iconClicked}
+                    keyboardNo={el.id} key={ident}
+                  />
+                );
+              })}
             </div>
           );
           const typeContent = (

@@ -5,8 +5,7 @@ body {
 .App {
   width: 90%;
   margin: 0 auto;
-  position: relative;
-  border: 1px solid black; }
+  position: relative; }
 
 .dumbButtonClass {
   padding: 5px 7px;
