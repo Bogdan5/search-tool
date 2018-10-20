@@ -108,25 +108,27 @@ class App extends Component {
     // this.updateHistory();
   }
 
-  conditionalClickHandler = (id, clickTop, clickLeft) => {
+  conditionalClickHandler = (id, clickTop, clickLeft, card) => {
     // console.log('conditional clicked in App button' + clickTop + ' ' + clickLeft);
     // console.log('formatter offset top' + this.formatterConditionButton.current.offsetTop);
-    const { mergerArray } = this.state;
+    const { mergerArray, cardSelected } = this.state;
     const appTop = this.appRef.current.offsetTop;
     const appLeft = this.appRef.current.offsetLeft;
     // console.log('app offsets' + appTop + ' ' + appLeft);
-    if (mergerArray[0] === null) {
-      this.setState({
-        mergerArray: [id, null, null],
-        menuVisible: true,
-        menuTop: clickTop - appTop - 10,
-        menuLeft: clickLeft - appLeft - 15,
-      });
-    } else if (mergerArray[1] === null && mergerArray[0] !== id) {
-      this.setState({ mergerArray: [id, null, null] });
-    } else if (mergerArray[1] !== null && mergerArray[0] !== id) {
-      this.merger(mergerArray[0], mergerArray[1], id);
-      this.setState({ mergerArray: [null, null, null] });
+    if (cardSelected === card) {
+      if (mergerArray[0] === null) {
+        this.setState({
+          mergerArray: [id, null, null],
+          menuVisible: true,
+          menuTop: clickTop - appTop - 10,
+          menuLeft: clickLeft - appLeft - 15,
+        });
+      } else if (mergerArray[1] === null && mergerArray[0] !== id) {
+        this.setState({ mergerArray: [id, null, null] });
+      } else if (mergerArray[1] !== null && mergerArray[0] !== id) {
+        this.merger(mergerArray[0], mergerArray[1], id);
+        this.setState({ mergerArray: [null, null, null] });
+      }
     }
   };
 
@@ -327,7 +329,10 @@ class App extends Component {
               cardSelected={cardSelected} id={el.id}
             >
               <ConditionButtonFormatter fromFormatter={this.fromFormat}>
-                {el.listElements.map(elem => elem)}
+                {el.listElements.map((elem) => {
+                  const copy = React.cloneElement(elem, { card: el.id });
+                  return copy;
+                })}
               </ConditionButtonFormatter>
             </Keyboard>
           );
