@@ -66,6 +66,10 @@ class App extends Component {
     return result;
   }
 
+  setColumnSelect = (event) => {
+    console.log(event.target.value);
+  }
+
   // updateHistory = () => {
   //   const { historyElements, historyOperations, listElements, listOperations } = this.state;
   //   this.setState({
@@ -258,15 +262,6 @@ class App extends Component {
     const propertiesMenu = { fromMenu: this.menuClickHandler };
     const MenuElementWithHandler = ComponentEnhancer(MenuOption, propertiesMenu);
     // drop down selector in each card that gives the field for each condition apply
-    const selectColumn = (
-      <select className='selector'>
-        <option value='colAll'>Selects fields</option>
-        <option value='colAll'>All fields</option>
-        <option value='col1'>Column 1</option>
-        <option value='col2'>Column 2</option>
-        <option value='col3'>Column 3</option>
-      </select>
-    );
 
     //
     return (
@@ -319,7 +314,13 @@ class App extends Component {
             <div>
               <SelectButton card={el.id} fromSelect={this.selectCard}>Select</SelectButton>
               <br />
-              {selectColumn}
+              <ColumnSelector className='selector' onChange={this.setColumnSelect}>
+                <option value='colAll'>Selects fields</option>
+                <option value='colAll'>All fields</option>
+                <option value='col1'>Column 1</option>
+                <option value='col2'>Column 2</option>
+                <option value='col3'>Column 3</option>
+              </ColumnSelector>
             </div>
           );
           return (
