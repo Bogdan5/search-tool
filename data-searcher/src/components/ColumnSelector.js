@@ -4,8 +4,8 @@ import '../App.css';
 const ColumnSelector = (props) => {
   const { fromSelector, card } = props;
   const handler = (event) => {
-      fromSelector(event.target.value, )
-  }
+    fromSelector(event.target.value, card);
+  };
   return (
     <select className='selector' onChange={handler}>
       <option value='colAll'>Selects fields</option>
@@ -15,4 +15,6 @@ const ColumnSelector = (props) => {
       <option value='col3'>Column 3</option>
     </select>
   );
-}
+};
+
+export default ColumnSelector;

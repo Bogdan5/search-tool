@@ -12,6 +12,7 @@ import DropDownMenu from './components/DropDownMenu';
 import MenuOption from './components/MenuOption';
 import Icon from './components/Icon';
 import SelectButton from './components/SelectButton';
+import ColumnSelector from './components/ColumnSelector';
 
 import './App.css';
 
@@ -261,7 +262,6 @@ class App extends Component {
     // adds a click handler to all components of the DropDownMenu
     const propertiesMenu = { fromMenu: this.menuClickHandler };
     const MenuElementWithHandler = ComponentEnhancer(MenuOption, propertiesMenu);
-    // drop down selector in each card that gives the field for each condition apply
 
     //
     return (
@@ -314,7 +314,10 @@ class App extends Component {
             <div>
               <SelectButton card={el.id} fromSelect={this.selectCard}>Select</SelectButton>
               <br />
-              <ColumnSelector className='selector' onChange={this.setColumnSelect}>
+              <ColumnSelector
+                className='selector' onChange={this.setColumnSelect}
+                card={el.id}
+              >
                 <option value='colAll'>Selects fields</option>
                 <option value='colAll'>All fields</option>
                 <option value='col1'>Column 1</option>
