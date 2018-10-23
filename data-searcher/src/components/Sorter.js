@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../App.css';
 
-class Sorter extends Component {
-  render() {
-    return (
-      <div className='sorterClass'>
+const Sorter = (props) => {
+  const { header } = props;
+  return (
+    <div className='sorterClass'>
+      {header.map(el => (
+        <div>
+          <div>{el}</div>
 
-      </div>
+        </div>))}
+    </div>
     );
-  }
-}
+};
 
 export default Sorter;
