@@ -8,10 +8,10 @@ const Sorter = (props) => {
       {header.map(el => (
         <div>
           <div>{el}</div>
-
+            
         </div>))}
     </div>
-    );
+  );
 };
 
 export default Sorter;

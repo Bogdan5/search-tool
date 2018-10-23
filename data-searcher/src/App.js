@@ -15,6 +15,7 @@ import SelectButton from './components/SelectButton';
 import ColumnSelector from './components/ColumnSelector';
 
 import './App.css';
+import SortButton from './components/SortButton';
 
 class App extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class App extends Component {
       idConditional: 0,
       menuVisible: false,
       mergerArray: [null, null, null],
+      data: {},
     };
   }
 
@@ -342,7 +344,14 @@ class App extends Component {
           );
         })}
         {/* buttons for sorting the data */}
-        <Sorter />
+        <Sorter>
+          {this.data[0].keys().map(el => (
+            <div>
+              <div>{el}</div>
+              <SortButton fromSortButton={this.sorter} />
+            </div>
+          ))}
+        </Sorter>
         {/* data displayed as resulted from search and sort operations */}
         <DataDisplay dataLoad={this.state} />
         <DropDownMenu
