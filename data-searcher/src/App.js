@@ -24,12 +24,12 @@ class App extends Component {
     this.appRef = React.createRef();
     this.state = {
       listCards: [{ // list of all the conditions cards that include conditional buttons
-        id: 0,// id to identify each card
-        field: 'all',// on what columns of the data the list of operations apply
+        id: 0, // id to identify each card
+        field: 'all', // on what columns of the data the list of operations apply
         listElements: [],
-        listOperations: [],// what conditions aply to the data - helps sort
+        listOperations: [], // what conditions aply to the data - helps sort
       }],
-      cardSelected: 0,// card that is currently selected to work on
+      cardSelected: 0, // card that is currently selected to work on
       keyword: '', // content of the keyword input text field
       inputVisibility: 'hidden', // in the second Keyboard, whether the position input is visible
       keywordButtonClicked: '', // name of button clicked in the keyword(2nd) Keyboard
@@ -70,6 +70,7 @@ class App extends Component {
     return result;
   }
 
+  // sets the kind of colum the condition in the respective card will apply
   setColumnSelect = (event) => {
     console.log(event.target.value);
   }
@@ -142,6 +143,7 @@ class App extends Component {
     }
   };
 
+  // handles clicks on the menu - calls merger to merge conditional buttons
   menuClickHandler = (name) => {
     const { mergerArray } = this.state;
     this.setState({ menuVisible: false });
@@ -206,7 +208,7 @@ class App extends Component {
           this.setState({ listCards: listCopy });
           chldList = lst.map((el, index) => <span key={index}>{`${el}`}</span>);
           this.setState({ idConditional: idConditional + 1 });
-          const propsArray = {
+          const propsArray = { // props passed to the ConditioButton prop
             children: chldList,
             key: idConditional,
             fromConditional: this.conditionalClickHandler,
@@ -233,6 +235,7 @@ class App extends Component {
     }
   };
 
+  // handles clicks on the two icons (+ or -) - adds or deletes cards
   iconClicked = (type, keyboardNo) => {
     const { listCards } = this.state;
     if (type === '+') {
@@ -271,13 +274,15 @@ class App extends Component {
     //
     return (
       <div className='App' ref={this.appRef}>
+        {/* the header with the description on the app */}
         <Header title='Data display - Search and sort' />
         { /* includes description and operator buttons */ }
-        <Keyboard leftSection='Boolean operators' classProp=''>
+        {/* <Keyboard leftSection='Boolean operators' classProp=''>
           <ButtonWithHandler name='AND' />
           <ButtonWithHandler name='OR' />
           <ButtonWithHandler name='NOT' />
-        </Keyboard>
+        </Keyboard> */}
+        {/* the card that constructs conditional buttons */}
         <Keyboard
           leftSection='Search keyword' classProp=' keyboardSearchKeyword'
           icon=''
