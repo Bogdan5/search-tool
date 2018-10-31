@@ -23,13 +23,13 @@ class App extends Component {
     this.textInput = React.createRef();
     this.appRef = React.createRef();
     this.state = {
-      listCards: [{
-        id: 0,
-        field: 'all',
+      listCards: [{ // list of all the conditions cards that include conditional buttons
+        id: 0,// id to identify each card
+        field: 'all',// on what columns of the data the list of operations apply
         listElements: [],
-        listOperations: [],
+        listOperations: [],// what conditions aply to the data - helps sort
       }],
-      cardSelected: 0,
+      cardSelected: 0,// card that is currently selected to work on
       keyword: '', // content of the keyword input text field
       inputVisibility: 'hidden', // in the second Keyboard, whether the position input is visible
       keywordButtonClicked: '', // name of button clicked in the keyword(2nd) Keyboard
@@ -54,6 +54,7 @@ class App extends Component {
     this.setState({ position: e.target.value });
   }
 
+  // modifies the visibility of the menu that helps merge conditional buttons
   menuHide = () => this.setState({ menuVisible: false });
 
   selectCard = (card) => {
@@ -81,6 +82,7 @@ class App extends Component {
   //   });
   // }
 
+  // merges two conditional buttons in a larger conditional button
   merger = (...arr) => {
     const { listCards, idConditional, cardSelected } = this.state;
     const newElement = (element1, name, element2) => {
@@ -115,6 +117,7 @@ class App extends Component {
     // this.updateHistory();
   }
 
+  // handles clicks on conditional buttons; helps combine conditions
   conditionalClickHandler = (id, clickTop, clickLeft, card) => {
     // console.log('conditional clicked in App button' + clickTop + ' ' + clickLeft);
     // console.log('formatter offset top' + this.formatterConditionButton.current.offsetTop);
