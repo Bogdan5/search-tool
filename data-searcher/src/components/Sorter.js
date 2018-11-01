@@ -2,14 +2,10 @@ import React from 'react';
 import '../App.css';
 
 const Sorter = (props) => {
-  const { header } = props;
+  const { children } = props;
   return (
     <div className='sorterClass'>
-      {header.map(el => (
-        <div>
-          <div>{el}</div>
-            
-        </div>))}
+      {children}
     </div>
   );
 };

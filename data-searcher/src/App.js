@@ -275,7 +275,6 @@ class App extends Component {
     const propertiesMenu = { fromMenu: this.menuClickHandler };
     const MenuElementWithHandler = ComponentEnhancer(MenuOption, propertiesMenu);
 
-    //
     return (
       <div className='App' ref={this.appRef}>
         {/* the header with the description on the app */}
@@ -357,8 +356,8 @@ class App extends Component {
         })}
         {/* buttons for sorting the data */}
         <Sorter>
-          {data[0].keys().map(el => (
-            <div>
+          {Object.keys(data[0]).map(el => (
+            <div className='sorterClass'>
               <div>{el}</div>
               <SortButton fromSortButton={this.sorter} />
             </div>
