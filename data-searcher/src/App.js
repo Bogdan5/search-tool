@@ -38,7 +38,11 @@ class App extends Component {
       idConditional: 0,
       menuVisible: false,
       mergerArray: [null, null, null],
-      data: {},
+      data: [{
+        column1: 12,
+        column2: 23,
+        column3: 20,
+      }],
     };
   }
 
@@ -257,7 +261,7 @@ class App extends Component {
   render() {
     const {
       inputVisibility, menuVisible, active, listCards,
-      menuTop, menuLeft, cardSelected,
+      menuTop, menuLeft, cardSelected, data,
     } = this.state;
     // enhancing DumbButtons to ButtonWithHandler through ComponentEnhancer
     const propertiesObj = { // properties object passed to ComponentEnhancer
@@ -353,7 +357,7 @@ class App extends Component {
         })}
         {/* buttons for sorting the data */}
         <Sorter>
-          {this.data[0].keys().map(el => (
+          {data[0].keys().map(el => (
             <div>
               <div>{el}</div>
               <SortButton fromSortButton={this.sorter} />
